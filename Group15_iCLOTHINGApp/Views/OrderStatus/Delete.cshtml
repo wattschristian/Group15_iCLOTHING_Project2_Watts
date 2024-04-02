@@ -1,0 +1,40 @@
+﻿@model Group15_iCLOTHINGApp.Models.OrderStatus
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OrderStatus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.orderStatus1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderStatus1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statusDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statusDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
