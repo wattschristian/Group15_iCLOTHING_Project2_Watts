@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catalog";
 }
 
 <h2>Index</h2>
@@ -39,11 +39,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.productQty)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.productID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.productID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.productID })
         </td>
     </tr>
 }

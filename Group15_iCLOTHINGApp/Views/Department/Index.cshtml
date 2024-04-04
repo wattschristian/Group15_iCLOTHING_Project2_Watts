@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.Department>
+
+@{
+    ViewBag.Title = "Department";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table" cellspacing="5">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.departmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.departmentDescription)
+            </td>
+        </tr>
+    }
+
+</table>

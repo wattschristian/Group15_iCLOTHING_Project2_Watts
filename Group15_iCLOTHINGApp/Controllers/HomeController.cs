@@ -13,16 +13,21 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View();
         }
 
+        public ActionResult UserIndex() 
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Welcome to iCLOTHING! We are dedicated to bringing you quality products at an affordable price.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Developers: Alex Kochman,\tParker Dierkens,\tChristian Watts";
 
             return View();
         }

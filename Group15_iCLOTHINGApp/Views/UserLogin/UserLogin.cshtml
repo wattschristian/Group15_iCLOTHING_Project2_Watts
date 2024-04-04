@@ -1,0 +1,19 @@
+﻿@model Group15_iCLOTHINGApp.Models.UserPassword
+
+@using (Html.BeginForm("Validate", "UserLogin"))
+{
+    <span>User Name</span>
+    @Html.EditorFor(Model => Model.userAccountName)
+    @Html.ValidationMessageFor(model => model.userAccountName, "", new { @class = "text-danger" })
+    <br />
+    <span>Password</span>
+    @Html.EditorFor(Model => Model.userEncryptedPassword, new { htmlAttributes = new { type = "password" } })
+    @Html.ValidationMessageFor(model => model.userEncryptedPassword, "", new { @class = "text-danger" })
+    <br />
+    <input type="submit" value="Login" />
+}
+
+@if (TempData["Message"] != null)
+{
+    <span style="color:red;">@TempData["Message"].ToString()</span>
+}
