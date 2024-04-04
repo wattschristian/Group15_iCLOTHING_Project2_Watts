@@ -1,11 +1,7 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using System.Web.Mvc;
-using System;
-using Group15_iCLOTHINGApp.Models;
+﻿using Group15_iCLOTHINGApp.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing.Printing;
+using System.Web.Mvc;
 
 public class UserLoginController : Controller
 {
@@ -22,10 +18,11 @@ public class UserLoginController : Controller
     public ActionResult Validate(UserPassword up)
     {
         List<UserPassword> users = db.UserPassword.ToList();
-        foreach(UserPassword user in users)
+        foreach (UserPassword user in users)
         {
-            if(user.userAccountName == up.userAccountName && user.userEncryptedPassword == up.userEncryptedPassword)
+            if (user.userAccountName == up.userAccountName && user.userEncryptedPassword == up.userEncryptedPassword)
             {
+                Session.Add("UserID", user.userAccountName);
                 return RedirectToAction("UserIndex", "Home");
             }
         }

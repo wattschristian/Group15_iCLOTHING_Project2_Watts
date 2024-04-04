@@ -14,11 +14,34 @@ namespace Group15_iCLOTHINGApp.Models
     
     public partial class CustomerInfo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerInfo()
+        {
+            this.ShoppingCart = new HashSet<ShoppingCart>();
+            this.ItemDelivery = new HashSet<ItemDelivery>();
+            this.UserQuery = new HashSet<UserQuery>();
+            this.Email = new HashSet<Email>();
+            this.UserComments = new HashSet<UserComments>();
+        }
+    
         public string customerID { get; set; }
         public string customerName { get; set; }
         public string customerShippingAddress { get; set; }
         public string customerBillingAddress { get; set; }
         public Nullable<System.DateTime> customerDOB { get; set; }
         public string customerGender { get; set; }
+        public string userEncryptedPassword { get; set; }
+    
+        public virtual UserPassword UserPassword { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItemDelivery> ItemDelivery { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserQuery> UserQuery { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Email> Email { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserComments> UserComments { get; set; }
     }
 }

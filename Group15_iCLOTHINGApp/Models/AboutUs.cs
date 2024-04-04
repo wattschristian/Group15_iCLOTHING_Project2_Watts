@@ -12,15 +12,15 @@ namespace Group15_iCLOTHINGApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Email
+    public partial class AboutUs
     {
-        public string emailNo { get; set; }
-        public Nullable<System.DateTime> emailDate { get; set; }
-        public string emailSubject { get; set; }
-        public string emailBody { get; set; }
-        public string customerID { get; set; }
-        public string fromEmail { get; set; }
+        public string companyAddress { get; set; }
+        public string companyShippingPolicy { get; set; }
+        public string companyReturnPolicy { get; set; }
+        public string companyContactInfo { get; set; }
+        public string companyBusinessDescription { get; set; }
+        public string managerID { get; set; }
     
-        public virtual CustomerInfo CustomerInfo { get; set; }
+        public virtual Administrator Administrator { get; set; }
     }
 }

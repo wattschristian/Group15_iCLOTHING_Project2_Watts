@@ -15,7 +15,14 @@ namespace Group15_iCLOTHINGApp.Models
     public partial class ShoppingCart
     {
         public int cartID { get; set; }
-        public Nullable<decimal> cartProductPrice { get; set; }
-        public Nullable<int> cartProductQty { get; set; }
+        public decimal cartProductPrice { get; set; }
+        public int cartProductQty { get; set; }
+        public string customerID { get; set; }
+        public string productID { get; set; }
+        public int statusID { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

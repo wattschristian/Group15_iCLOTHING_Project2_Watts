@@ -6,29 +6,34 @@
     <edmx:StorageModels>
       <Schema Namespace="Group15_iCLOTHINGDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AboutUs">
+          <Key>
+            <PropertyRef Name="managerID" />
+          </Key>
           <Property Name="companyAddress" Type="varchar" MaxLength="255" />
           <Property Name="companyShippingPolicy" Type="varchar" MaxLength="255" />
           <Property Name="companyReturnPolicy" Type="varchar" MaxLength="255" />
           <Property Name="companyContactInfo" Type="varchar" MaxLength="255" />
           <Property Name="companyBusinessDescription" Type="text" />
-        </EntityType>-->
+          <Property Name="managerID" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="adminID" />
           </Key>
           <Property Name="adminID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="adminName" Type="varchar" MaxLength="100" />
-          <Property Name="adminEmail" Type="varchar" MaxLength="100" />
-          <Property Name="dateHired" Type="date" />
+          <Property Name="adminName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="adminEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dateHired" Type="date" Nullable="false" />
+          <Property Name="adminEncryptedPassword" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="brandID" />
           </Key>
           <Property Name="brandID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="brandName" Type="varchar" MaxLength="100" />
+          <Property Name="brandName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="brandDescription" Type="text" />
         </EntityType>
         <EntityType Name="Category">
@@ -36,26 +41,28 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
             <PropertyRef Name="categoryID" />
           </Key>
           <Property Name="categoryID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="categoryName" Type="varchar" MaxLength="100" />
+          <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="categoryDescription" Type="text" />
+          <Property Name="departmentID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerInfo">
           <Key>
             <PropertyRef Name="customerID" />
           </Key>
           <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="customerName" Type="varchar" MaxLength="100" />
+          <Property Name="customerName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="customerShippingAddress" Type="varchar" MaxLength="255" />
           <Property Name="customerBillingAddress" Type="varchar" MaxLength="255" />
           <Property Name="customerDOB" Type="date" />
           <Property Name="customerGender" Type="varchar" MaxLength="10" />
+          <Property Name="userEncryptedPassword" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
           </Key>
           <Property Name="departmentID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="departmentName" Type="varchar" MaxLength="100" />
+          <Property Name="departmentName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="departmentDescription" Type="text" />
         </EntityType>
         <EntityType Name="Email">
@@ -66,13 +73,17 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="emailDate" Type="date" />
           <Property Name="emailSubject" Type="varchar" MaxLength="255" />
           <Property Name="emailBody" Type="text" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fromEmail" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="ItemDelivery">
           <Key>
             <PropertyRef Name="stickerID" />
           </Key>
           <Property Name="stickerID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="stickerDate" Type="date" />
+          <Property Name="stickerDate" Type="date" Nullable="false" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="productID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -81,40 +92,48 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="orderStatus" Type="varchar" MaxLength="50" />
           <Property Name="statusDate" Type="date" />
+          <Property Name="adminUpdated" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="productID" />
           </Key>
           <Property Name="productID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="productName" Type="varchar" MaxLength="100" />
+          <Property Name="productName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="productDescription" Type="text" />
-          <Property Name="productPrice" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="productQty" Type="int" />
+          <Property Name="productPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="productQty" Type="int" Nullable="false" />
+          <Property Name="brandID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoryID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="departmentID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
             <PropertyRef Name="cartID" />
           </Key>
           <Property Name="cartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cartProductPrice" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="cartProductQty" Type="int" />
+          <Property Name="cartProductPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cartProductQty" Type="int" Nullable="false" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="productID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="statusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserComments">
           <Key>
             <PropertyRef Name="commentNo" />
           </Key>
           <Property Name="commentNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="commentDate" Type="date" />
-          <Property Name="commentDescription" Type="text" />
+          <Property Name="commentDate" Type="date" Nullable="false" />
+          <Property Name="commentDescription" Type="text" Nullable="false" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserPassword">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
           <Property Name="userID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="userAccountName" Type="varchar" MaxLength="100" />
-          <Property Name="userEncryptedPassword" Type="varchar" MaxLength="255" />
+          <Property Name="userAccountName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="userEncryptedPassword" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="passwordExpiryTime" Type="int" />
           <Property Name="userAccountExpiryDate" Type="date" />
         </EntityType>
@@ -123,9 +142,196 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
             <PropertyRef Name="queryNo" />
           </Key>
           <Property Name="queryNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="queryDate" Type="date" />
-          <Property Name="queryDescription" Type="text" />
+          <Property Name="queryDate" Type="date" Nullable="false" />
+          <Property Name="queryDescription" Type="text" Nullable="false" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="Authenticated By">
+          <End Role="UserPassword" Type="Self.UserPassword" Multiplicity="1" />
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserPassword">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer's Cart">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists in Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists in Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists in Department (Product)">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Email_Administrator' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Email_Administrator" />-->
+        <Association Name="FK_ItemDelivery_CustomerInfo">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="ItemDelivery" Type="Self.ItemDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="ItemDelivery">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="0..1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="adminID" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="adminUpdated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuery_CustomerInfo">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="UserQuery" Type="Self.UserQuery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="UserQuery">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Has Password' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Has Password" />-->
+        <Association Name="Has Product ID">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ItemDelivery" Type="Self.ItemDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="ItemDelivery">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Has Status">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="statusID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="statusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Manages">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AboutUs" Type="Self.AboutUs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="adminID" />
+            </Principal>
+            <Dependent Role="AboutUs">
+              <PropertyRef Name="managerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Manufactured By">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="brandID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Product In Cart">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="To Customer">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Writes">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="UserComments" Type="Self.UserComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="UserComments">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Group15_iCLOTHINGDBModelStoreContainer">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
@@ -140,6 +346,76 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <EntitySet Name="UserComments" EntityType="Self.UserComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPassword" EntityType="Self.UserPassword" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserQuery" EntityType="Self.UserQuery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AboutUs" EntityType="Self.AboutUs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AboutUs].[companyAddress] AS [companyAddress], 
+    [AboutUs].[companyShippingPolicy] AS [companyShippingPolicy], 
+    [AboutUs].[companyReturnPolicy] AS [companyReturnPolicy], 
+    [AboutUs].[companyContactInfo] AS [companyContactInfo], 
+    [AboutUs].[companyBusinessDescription] AS [companyBusinessDescription], 
+    [AboutUs].[managerID] AS [managerID]
+    FROM [dbo].[AboutUs] AS [AboutUs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Authenticated By" Association="Self.Authenticated By">
+            <End Role="UserPassword" EntitySet="UserPassword" />
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+          </AssociationSet>
+          <AssociationSet Name="Customer's Cart" Association="Self.Customer's Cart">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="Exists in Category" Association="Self.Exists in Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Exists in Department" Association="Self.Exists in Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="Exists in Department (Product)" Association="Self.Exists in Department (Product)">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemDelivery_CustomerInfo" Association="Self.FK_ItemDelivery_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="ItemDelivery" EntitySet="ItemDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Administrator" Association="Self.FK_OrderStatus_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuery_CustomerInfo" Association="Self.FK_UserQuery_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="UserQuery" EntitySet="UserQuery" />
+          </AssociationSet>
+          <AssociationSet Name="Has Product ID" Association="Self.Has Product ID">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ItemDelivery" EntitySet="ItemDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="Has Status" Association="Self.Has Status">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="Manages" Association="Self.Manages">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AboutUs" EntitySet="AboutUs" />
+          </AssociationSet>
+          <AssociationSet Name="Manufactured By" Association="Self.Manufactured By">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Product In Cart" Association="Self.Product In Cart">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="To Customer" Association="Self.To Customer">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="Writes" Association="Self.Writes">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="UserComments" EntitySet="UserComments" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -151,44 +427,60 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
             <PropertyRef Name="adminID" />
           </Key>
           <Property Name="adminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="adminName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="adminEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="dateHired" Type="DateTime" Precision="0" />
+          <Property Name="adminName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adminEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateHired" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="adminEncryptedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK_OrderStatus_Administrator" FromRole="Administrator" ToRole="OrderStatus" />
+          <NavigationProperty Name="AboutUs" Relationship="Self.Manages" FromRole="Administrator" ToRole="AboutUs" />
         </EntityType>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="brandID" />
           </Key>
           <Property Name="brandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="brandName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="brandName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="brandDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="Self.Manufactured_By" FromRole="Brand" ToRole="Product" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryID" />
           </Key>
           <Property Name="categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="categoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="categoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="departmentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.Exists_in_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Department" Relationship="Self.Exists_in_Department" FromRole="Category" ToRole="Department" />
         </EntityType>
         <EntityType Name="CustomerInfo">
           <Key>
             <PropertyRef Name="customerID" />
           </Key>
           <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="customerShippingAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="customerBillingAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="customerDOB" Type="DateTime" Precision="0" />
           <Property Name="customerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userEncryptedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserPassword" Relationship="Self.Authenticated_By" FromRole="CustomerInfo" ToRole="UserPassword" />
+          <NavigationProperty Name="ShoppingCart" Relationship="Self.Customer_s_Cart" FromRole="CustomerInfo" ToRole="ShoppingCart" />
+          <NavigationProperty Name="ItemDelivery" Relationship="Self.FK_ItemDelivery_CustomerInfo" FromRole="CustomerInfo" ToRole="ItemDelivery" />
+          <NavigationProperty Name="UserQuery" Relationship="Self.FK_UserQuery_CustomerInfo" FromRole="CustomerInfo" ToRole="UserQuery" />
+          <NavigationProperty Name="Email" Relationship="Self.To_Customer" FromRole="CustomerInfo" ToRole="Email" />
+          <NavigationProperty Name="UserComments" Relationship="Self.Writes" FromRole="CustomerInfo" ToRole="UserComments" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="departmentID" />
           </Key>
           <Property Name="departmentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="departmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="departmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="departmentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Self.Exists_in_Department" FromRole="Department" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="Self.Exists_in_Department__Product_" FromRole="Department" ToRole="Product" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
@@ -198,13 +490,20 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="emailDate" Type="DateTime" Precision="0" />
           <Property Name="emailSubject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="emailBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fromEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.To_Customer" FromRole="Email" ToRole="CustomerInfo" />
         </EntityType>
         <EntityType Name="ItemDelivery">
           <Key>
             <PropertyRef Name="stickerID" />
           </Key>
           <Property Name="stickerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="stickerDate" Type="DateTime" Precision="0" />
+          <Property Name="stickerDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.FK_ItemDelivery_CustomerInfo" FromRole="ItemDelivery" ToRole="CustomerInfo" />
+          <NavigationProperty Name="Product" Relationship="Self.Has_Product_ID" FromRole="ItemDelivery" ToRole="Product" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -213,51 +512,265 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="orderStatus1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="statusDate" Type="DateTime" Precision="0" />
+          <Property Name="adminUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_OrderStatus_Administrator" FromRole="OrderStatus" ToRole="Administrator" />
+          <NavigationProperty Name="ShoppingCart" Relationship="Self.Has_Status" FromRole="OrderStatus" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="productID" />
           </Key>
           <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="productName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="productName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="productDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="productPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="productQty" Type="Int32" />
+          <Property Name="productPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="productQty" Type="Int32" Nullable="false" />
+          <Property Name="brandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="departmentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.Manufactured_By" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="Self.Exists_in_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Department" Relationship="Self.Exists_in_Department__Product_" FromRole="Product" ToRole="Department" />
+          <NavigationProperty Name="ItemDelivery" Relationship="Self.Has_Product_ID" FromRole="Product" ToRole="ItemDelivery" />
+          <NavigationProperty Name="ShoppingCart" Relationship="Self.Product_In_Cart" FromRole="Product" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
             <PropertyRef Name="cartID" />
           </Key>
           <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cartProductPrice" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="cartProductQty" Type="Int32" />
+          <Property Name="cartProductPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cartProductQty" Type="Int32" Nullable="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="statusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.Customer_s_Cart" FromRole="ShoppingCart" ToRole="CustomerInfo" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.Has_Status" FromRole="ShoppingCart" ToRole="OrderStatus" />
+          <NavigationProperty Name="Product" Relationship="Self.Product_In_Cart" FromRole="ShoppingCart" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserComments">
           <Key>
             <PropertyRef Name="commentNo" />
           </Key>
           <Property Name="commentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="commentDate" Type="DateTime" Precision="0" />
-          <Property Name="commentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="commentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.Writes" FromRole="UserComments" ToRole="CustomerInfo" />
         </EntityType>
         <EntityType Name="UserPassword">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
           <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userAccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="userEncryptedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userAccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userEncryptedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="passwordExpiryTime" Type="Int32" />
           <Property Name="userAccountExpiryDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.Authenticated_By" FromRole="UserPassword" ToRole="CustomerInfo" />
         </EntityType>
         <EntityType Name="UserQuery">
           <Key>
             <PropertyRef Name="queryNo" />
           </Key>
           <Property Name="queryNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="queryDate" Type="DateTime" Precision="0" />
-          <Property Name="queryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="queryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="queryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.FK_UserQuery_CustomerInfo" FromRole="UserQuery" ToRole="CustomerInfo" />
         </EntityType>
+        <EntityType Name="AboutUs">
+          <Key>
+            <PropertyRef Name="managerID" />
+          </Key>
+          <Property Name="companyAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyShippingPolicy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyReturnPolicy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="companyBusinessDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="managerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.Manages" FromRole="AboutUs" ToRole="Administrator" />
+        </EntityType>
+        <Association Name="FK_OrderStatus_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="0..1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="adminID" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="adminUpdated" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Manages">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="AboutUs" Type="Self.AboutUs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="adminID" />
+            </Principal>
+            <Dependent Role="AboutUs">
+              <PropertyRef Name="managerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Manufactured_By">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="brandID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists_in_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists_in_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Authenticated_By">
+          <End Role="UserPassword" Type="Self.UserPassword" Multiplicity="1" />
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserPassword">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer_s_Cart">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemDelivery_CustomerInfo">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="ItemDelivery" Type="Self.ItemDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="ItemDelivery">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuery_CustomerInfo">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="UserQuery" Type="Self.UserQuery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="UserQuery">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="To_Customer">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Writes">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="UserComments" Type="Self.UserComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="UserComments">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Exists_in_Department__Product_">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Has_Product_ID">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ItemDelivery" Type="Self.ItemDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="ItemDelivery">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Has_Status">
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="statusID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="statusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Product_In_Cart">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Group15_iCLOTHINGDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" />
           <EntitySet Name="Brand" EntityType="Self.Brand" />
@@ -272,6 +785,67 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <EntitySet Name="UserComments" EntityType="Self.UserComments" />
           <EntitySet Name="UserPassword" EntityType="Self.UserPassword" />
           <EntitySet Name="UserQuery" EntityType="Self.UserQuery" />
+          <EntitySet Name="AboutUs" EntityType="Self.AboutUs" />
+          <AssociationSet Name="FK_OrderStatus_Administrator" Association="Self.FK_OrderStatus_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="Manages" Association="Self.Manages">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="AboutUs" EntitySet="AboutUs" />
+          </AssociationSet>
+          <AssociationSet Name="Manufactured_By" Association="Self.Manufactured_By">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Exists_in_Category" Association="Self.Exists_in_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Exists_in_Department" Association="Self.Exists_in_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="Authenticated_By" Association="Self.Authenticated_By">
+            <End Role="UserPassword" EntitySet="UserPassword" />
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+          </AssociationSet>
+          <AssociationSet Name="Customer_s_Cart" Association="Self.Customer_s_Cart">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemDelivery_CustomerInfo" Association="Self.FK_ItemDelivery_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="ItemDelivery" EntitySet="ItemDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuery_CustomerInfo" Association="Self.FK_UserQuery_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="UserQuery" EntitySet="UserQuery" />
+          </AssociationSet>
+          <AssociationSet Name="To_Customer" Association="Self.To_Customer">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="Writes" Association="Self.Writes">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="UserComments" EntitySet="UserComments" />
+          </AssociationSet>
+          <AssociationSet Name="Exists_in_Department__Product_" Association="Self.Exists_in_Department__Product_">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Has_Product_ID" Association="Self.Has_Product_ID">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ItemDelivery" EntitySet="ItemDelivery" />
+          </AssociationSet>
+          <AssociationSet Name="Has_Status" Association="Self.Has_Status">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="Product_In_Cart" Association="Self.Product_In_Cart">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -286,6 +860,7 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="adminName" ColumnName="adminName" />
                 <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
                 <ScalarProperty Name="dateHired" ColumnName="dateHired" />
+                <ScalarProperty Name="adminEncryptedPassword" ColumnName="adminEncryptedPassword" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -304,6 +879,7 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="categoryID" ColumnName="categoryID" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
                 <ScalarProperty Name="categoryDescription" ColumnName="categoryDescription" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -316,6 +892,7 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="customerBillingAddress" ColumnName="customerBillingAddress" />
                 <ScalarProperty Name="customerDOB" ColumnName="customerDOB" />
                 <ScalarProperty Name="customerGender" ColumnName="customerGender" />
+                <ScalarProperty Name="userEncryptedPassword" ColumnName="userEncryptedPassword" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -335,6 +912,8 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="emailDate" ColumnName="emailDate" />
                 <ScalarProperty Name="emailSubject" ColumnName="emailSubject" />
                 <ScalarProperty Name="emailBody" ColumnName="emailBody" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="fromEmail" ColumnName="fromEmail" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -343,6 +922,8 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
               <MappingFragment StoreEntitySet="ItemDelivery">
                 <ScalarProperty Name="stickerID" ColumnName="stickerID" />
                 <ScalarProperty Name="stickerDate" ColumnName="stickerDate" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -352,6 +933,7 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="statusID" ColumnName="statusID" />
                 <ScalarProperty Name="orderStatus1" ColumnName="orderStatus" />
                 <ScalarProperty Name="statusDate" ColumnName="statusDate" />
+                <ScalarProperty Name="adminUpdated" ColumnName="adminUpdated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -363,6 +945,9 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="productDescription" ColumnName="productDescription" />
                 <ScalarProperty Name="productPrice" ColumnName="productPrice" />
                 <ScalarProperty Name="productQty" ColumnName="productQty" />
+                <ScalarProperty Name="brandID" ColumnName="brandID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -372,6 +957,9 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="cartID" ColumnName="cartID" />
                 <ScalarProperty Name="cartProductPrice" ColumnName="cartProductPrice" />
                 <ScalarProperty Name="cartProductQty" ColumnName="cartProductQty" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="statusID" ColumnName="statusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -381,6 +969,7 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="commentNo" ColumnName="commentNo" />
                 <ScalarProperty Name="commentDate" ColumnName="commentDate" />
                 <ScalarProperty Name="commentDescription" ColumnName="commentDescription" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -401,6 +990,19 @@ warning 6013: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
                 <ScalarProperty Name="queryNo" ColumnName="queryNo" />
                 <ScalarProperty Name="queryDate" ColumnName="queryDate" />
                 <ScalarProperty Name="queryDescription" ColumnName="queryDescription" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AboutUs">
+            <EntityTypeMapping TypeName="Group15_iCLOTHINGDBModel.AboutUs">
+              <MappingFragment StoreEntitySet="AboutUs">
+                <ScalarProperty Name="companyAddress" ColumnName="companyAddress" />
+                <ScalarProperty Name="companyShippingPolicy" ColumnName="companyShippingPolicy" />
+                <ScalarProperty Name="companyReturnPolicy" ColumnName="companyReturnPolicy" />
+                <ScalarProperty Name="companyContactInfo" ColumnName="companyContactInfo" />
+                <ScalarProperty Name="companyBusinessDescription" ColumnName="companyBusinessDescription" />
+                <ScalarProperty Name="managerID" ColumnName="managerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

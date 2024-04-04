@@ -148,6 +148,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AboutUs.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Administrator.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -173,6 +176,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Models.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Models.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -337,6 +345,7 @@
     <Content Include="Views\UserPassword\Details.cshtml" />
     <Content Include="Views\UserPassword\Edit.cshtml" />
     <Content Include="Views\UserPassword\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,10 @@ namespace Group15_iCLOTHINGApp.Models
     public partial class UserComments
     {
         public string commentNo { get; set; }
-        public Nullable<System.DateTime> commentDate { get; set; }
+        public System.DateTime commentDate { get; set; }
         public string commentDescription { get; set; }
+        public string customerID { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
     }
 }

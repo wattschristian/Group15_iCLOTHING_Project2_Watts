@@ -19,5 +19,7 @@ namespace Group15_iCLOTHINGApp.Models
         public string userEncryptedPassword { get; set; }
         public Nullable<int> passwordExpiryTime { get; set; }
         public Nullable<System.DateTime> userAccountExpiryDate { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
     }
 }

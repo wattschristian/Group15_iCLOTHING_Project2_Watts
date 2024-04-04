@@ -1,8 +1,6 @@
 ﻿using Group15_iCLOTHINGApp.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Group15_iCLOTHINGApp.Controllers
@@ -22,14 +20,14 @@ namespace Group15_iCLOTHINGApp.Controllers
         public ActionResult Validate(Administrator a)
         {
             List<Administrator> admins = db.Administrator.ToList();
-         
-            //foreach (Administrator admin in admins)
-            //{
-            //    if (admin.adminEmail == a.adminEmail && admin.adminPassword == a.adminPassword)
-            //    {
-            //        return RedirectToAction("User", "Home");
-            //    }
-            //}
+
+            foreach (Administrator admin in admins)
+            {
+                if (admin.adminName == a.adminName && admin.adminEncryptedPassword == a.adminEncryptedPassword)
+                {
+                    return RedirectToAction("Index", "Administrator");
+                }
+            }
             return RedirectToAction("AdminLogin", "AdminLogin");
         }
     }

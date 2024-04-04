@@ -4,20 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf5d8370d38b42efa285930c2f9494bb" Name="Diagram1">
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Administrator" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Brand" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Category" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.CustomerInfo" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Department" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Email" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ItemDelivery" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.OrderStatus" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Product" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ShoppingCart" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserComments" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserPassword" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserQuery" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="0ee7a5f7a065431c9c337a90894270f9" Name="Diagram1">
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Administrator" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Brand" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Category" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.CustomerInfo" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Department" Width="1.5" PointX="1.5" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Email" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ItemDelivery" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.OrderStatus" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Product" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ShoppingCart" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserComments" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserPassword" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserQuery" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.AboutUs" Width="1.5" PointX="6" PointY="25" IsExpanded="true" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.FK_OrderStatus_Administrator" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Manages" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Manufactured_By" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Exists_in_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Exists_in_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Authenticated_By" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Customer_s_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.FK_ItemDelivery_CustomerInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.FK_UserQuery_CustomerInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.To_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Writes" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Exists_in_Department__Product_" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Has_Product_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Has_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Group15_iCLOTHINGDBModel.Product_In_Cart" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

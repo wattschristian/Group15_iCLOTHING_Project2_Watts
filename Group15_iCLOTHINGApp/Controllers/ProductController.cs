@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Group15_iCLOTHINGApp.Models;
+using Microsoft.Ajax.Utilities;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Group15_iCLOTHINGApp.Models;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
@@ -17,7 +15,32 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View(db.Product.ToList());
+            if (TempData["products"] != null)
+            {
+                List<Product> products = (List<Product>)TempData["products"];
+                return View(products);
+            }
+            return View();
+        }
+
+        public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "")
+        {
+            List<Product> products = db.Product.ToList();
+            List<Product> filteredProducts = new List<Product>();
+            if (!brandID.Equals(""))
+            {
+                filteredProducts = db.Product.Where(p => p.brandID.Equals(brandID)).Select(p => p).ToList();
+            }
+            else if(!categoryID.Equals(""))
+            {
+                filteredProducts = db.Product.Where(p => p.categoryID.Equals(categoryID)).Select(p => p).ToList();
+            }
+            else if (!departmentID.Equals(""))
+            {
+                filteredProducts = db.Product.Where(p => p.departmentID.Equals(departmentID)).Select(p => p).ToList();
+            }
+            TempData["products"] = filteredProducts;
+            return RedirectToAction("Index");
         }
 
         // GET: Product/Details/5
@@ -38,7 +61,49 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewBag.BrandList = ToSelectList("Brand");
+            ViewBag.CategoryList = ToSelectList("Category");
+            ViewBag.DepartmentList = ToSelectList("Department");
             return View();
+        }
+
+        public SelectList ToSelectList(string type)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            switch (type)
+            {
+                case "Brand":
+                    foreach (Brand b in db.Brand)
+                    {
+                        list.Add(new SelectListItem()
+                        {
+                            Text = b.brandName,
+                            Value = b.brandID
+                        });
+                    }
+                    break;
+                case "Category":
+                    foreach (Category c in db.Category)
+                    {
+                        list.Add(new SelectListItem()
+                        {
+                            Text = c.categoryName,
+                            Value = c.categoryID
+                        });
+                    }
+                    break;
+                case "Department":
+                    foreach (Department d in db.Department)
+                    {
+                        list.Add(new SelectListItem()
+                        {
+                            Text = d.departmentName,
+                            Value = d.departmentID
+                        });
+                    }
+                    break;
+            }
+            return new SelectList(list, "Value", "Text");
         }
 
         // POST: Product/Create
@@ -46,7 +111,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty")] Product product)
+        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty,brandId,categoryID,departmentID")] Product product)
         {
             if (ModelState.IsValid)
             {

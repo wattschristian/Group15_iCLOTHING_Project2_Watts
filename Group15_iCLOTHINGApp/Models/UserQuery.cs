@@ -15,7 +15,10 @@ namespace Group15_iCLOTHINGApp.Models
     public partial class UserQuery
     {
         public string queryNo { get; set; }
-        public Nullable<System.DateTime> queryDate { get; set; }
+        public System.DateTime queryDate { get; set; }
         public string queryDescription { get; set; }
+        public string customerID { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
     }
 }

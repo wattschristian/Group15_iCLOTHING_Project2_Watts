@@ -14,9 +14,20 @@ namespace Group15_iCLOTHINGApp.Models
     
     public partial class Administrator
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Administrator()
+        {
+            this.OrderStatus = new HashSet<OrderStatus>();
+        }
+    
         public string adminID { get; set; }
         public string adminName { get; set; }
         public string adminEmail { get; set; }
-        public Nullable<System.DateTime> dateHired { get; set; }
+        public System.DateTime dateHired { get; set; }
+        public string adminEncryptedPassword { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderStatus> OrderStatus { get; set; }
+        public virtual AboutUs AboutUs { get; set; }
     }
 }

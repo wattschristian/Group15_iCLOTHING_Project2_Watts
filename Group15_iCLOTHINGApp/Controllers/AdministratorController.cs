@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Group15_iCLOTHINGApp.Models;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Group15_iCLOTHINGApp.Models;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
@@ -17,7 +12,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: Administrators
         public ActionResult Index()
         {
-            return View(db.Administrator.ToList());
+            return View();
         }
 
         // GET: Administrators/Details/5
@@ -46,7 +41,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "adminID,adminName,adminEmail,dateHired")] Administrator administrator)
+        public ActionResult Create([Bind(Include = "adminID,adminName,adminEmail,dateHired,adminEncryptedPassword")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +73,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "adminID,adminName,adminEmail,dateHired")] Administrator administrator)
+        public ActionResult Edit([Bind(Include = "adminID,adminName,adminEmail,dateHired,adminEncryptedPassword")] Administrator administrator)
         {
             if (ModelState.IsValid)
             {
