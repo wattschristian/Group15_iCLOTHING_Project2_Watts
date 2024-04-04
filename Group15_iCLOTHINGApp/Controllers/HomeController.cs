@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Group15_iCLOTHINGApp.Models;
 using System.Web.Mvc;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
     public class HomeController : Controller
     {
+        Group15_iCLOTHINGDBEntities db = new Group15_iCLOTHINGDBEntities();
         public ActionResult Index()
         {
-            return View();
+            return View(db.Product);
         }
 
-        public ActionResult UserIndex() 
+        public ActionResult UserIndex()
         {
-            return View();
+            return View(db.Product);
         }
 
         public ActionResult About()

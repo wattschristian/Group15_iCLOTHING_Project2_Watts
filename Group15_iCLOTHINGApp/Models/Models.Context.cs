@@ -38,5 +38,6 @@ namespace Group15_iCLOTHINGApp.Models
         public virtual DbSet<UserComments> UserComments { get; set; }
         public virtual DbSet<UserPassword> UserPassword { get; set; }
         public virtual DbSet<UserQuery> UserQuery { get; set; }
+        public virtual DbSet<AboutUs> AboutUs { get; set; }
     }
 }

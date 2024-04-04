@@ -6,6 +6,8 @@
 
 <section class="row" aria-labelledby="homeTitle">
     <h1 id="title">Welcome!</h1>
+    <br />
+    <h4>Catalog</h4>
 </section>
 <ul>
     <li>@Html.ActionLink("Brand Create", "Create", "Brand", new { area = "" }, new { @class = "nav-link" })</li>
@@ -13,21 +15,30 @@
     <li>@Html.ActionLink("Department Create", "Create", "Department", new { area = "" }, new { @class = "nav-link" })</li>
     <li>@Html.ActionLink("Product Create", "Create", "Product", new { area = "" }, new { @class = "nav-link" })</li>
 </ul>
-@*@foreach (var item in Model)
-{
+<table class="table" cellpadding="5">
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.productName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productQty)
-        </td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th></th>
     </tr>
-}*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productQty)
+            </td>
+        </tr>
+    }
+</table>
 

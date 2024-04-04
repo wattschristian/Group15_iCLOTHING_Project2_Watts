@@ -2,11 +2,13 @@
 
 @using (Html.BeginForm("Validate", "AdminLogin"))
 {
-    <span>User Name</span>
-    <input required="required" type="text" name="Email" />
+    <span>Admin Name</span>
+    @Html.EditorFor(model => model.adminName)
+    @Html.ValidationMessageFor(model => model.adminName, "", new { @class = "text-danger" })
     <br />
     <span>Password</span>
-    <input required="required" type="password" name="Password" />
+    @Html.EditorFor(model => model.adminEncryptedPassword, new { htmlAttributes = new { type = "password" } })
+    @Html.ValidationMessageFor(model => model.adminEncryptedPassword, "", new { @class = "text-danger" })
     <br />
     <input type="submit" value="Login" />
 }
@@ -14,3 +16,4 @@
 @if (TempData["Message"] != null)
 {
     <span style="color:red;">@TempData["Message"].ToString()</span>
+}

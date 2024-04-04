@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Group15_iCLOTHINGApp.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Group15_iCLOTHINGApp.Models;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
@@ -46,7 +42,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "categoryID,categoryName,categoryDescription")] Category category)
+        public ActionResult Create([Bind(Include = "categoryID,categoryName,categoryDescription,departmentID")] Category category)
         {
             if (ModelState.IsValid)
             {

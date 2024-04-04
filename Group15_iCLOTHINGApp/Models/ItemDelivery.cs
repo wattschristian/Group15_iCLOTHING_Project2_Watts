@@ -15,6 +15,11 @@ namespace Group15_iCLOTHINGApp.Models
     public partial class ItemDelivery
     {
         public string stickerID { get; set; }
-        public Nullable<System.DateTime> stickerDate { get; set; }
+        public System.DateTime stickerDate { get; set; }
+        public string customerID { get; set; }
+        public string productID { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

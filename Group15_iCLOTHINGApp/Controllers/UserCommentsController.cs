@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Group15_iCLOTHINGApp.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Group15_iCLOTHINGApp.Models;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
@@ -17,6 +13,8 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: UserComments
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+                return RedirectToAction("UserLogin", "UserLogin");
             return View(db.UserComments.ToList());
         }
 

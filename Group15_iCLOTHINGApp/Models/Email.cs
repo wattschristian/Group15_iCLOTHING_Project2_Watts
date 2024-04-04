@@ -18,5 +18,9 @@ namespace Group15_iCLOTHINGApp.Models
         public Nullable<System.DateTime> emailDate { get; set; }
         public string emailSubject { get; set; }
         public string emailBody { get; set; }
+        public string customerID { get; set; }
+        public string fromEmail { get; set; }
+    
+        public virtual CustomerInfo CustomerInfo { get; set; }
     }
 }
