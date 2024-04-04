@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44371</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerInfoController.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemDeliveryController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -147,58 +149,53 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Administrator.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Brand.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerInfo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Email.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemDelivery.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
+    <Compile Include="Models\Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>Models.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.cs">
+    <Compile Include="Models\Models.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderStatus.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCart.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserComments.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserPassword.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserQuery.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,15 +219,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -238,12 +235,12 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\Models.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\Models.edmx.diagram">
+      <DependentUpon>Models.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -256,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Home\UserIndex.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -269,42 +267,36 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Administrators\Create.cshtml" />
-    <Content Include="Views\Administrators\Delete.cshtml" />
-    <Content Include="Views\Administrators\Details.cshtml" />
-    <Content Include="Views\Administrators\Edit.cshtml" />
-    <Content Include="Views\Administrators\Index.cshtml" />
-    <Content Include="Views\Brands\Create.cshtml" />
-    <Content Include="Views\Brands\Delete.cshtml" />
-    <Content Include="Views\Brands\Details.cshtml" />
-    <Content Include="Views\Brands\Edit.cshtml" />
-    <Content Include="Views\Brands\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\CustomerInfoes\Create.cshtml" />
-    <Content Include="Views\CustomerInfoes\Delete.cshtml" />
-    <Content Include="Views\CustomerInfoes\Details.cshtml" />
-    <Content Include="Views\CustomerInfoes\Edit.cshtml" />
-    <Content Include="Views\CustomerInfoes\Index.cshtml" />
-    <Content Include="Views\CustomerInfoes1\Create.cshtml" />
-    <Content Include="Views\CustomerInfoes1\Delete.cshtml" />
-    <Content Include="Views\CustomerInfoes1\Details.cshtml" />
-    <Content Include="Views\CustomerInfoes1\Edit.cshtml" />
-    <Content Include="Views\CustomerInfoes1\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
-    <Content Include="Views\Departments\Details.cshtml" />
-    <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Emails\Create.cshtml" />
-    <Content Include="Views\Emails\Delete.cshtml" />
-    <Content Include="Views\Emails\Details.cshtml" />
-    <Content Include="Views\Emails\Edit.cshtml" />
-    <Content Include="Views\Emails\Index.cshtml" />
+    <Content Include="Views\Administrator\Create.cshtml" />
+    <Content Include="Views\Administrator\Delete.cshtml" />
+    <Content Include="Views\Administrator\Details.cshtml" />
+    <Content Include="Views\Administrator\Edit.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Brand\Create.cshtml" />
+    <Content Include="Views\Brand\Delete.cshtml" />
+    <Content Include="Views\Brand\Details.cshtml" />
+    <Content Include="Views\Brand\Edit.cshtml" />
+    <Content Include="Views\Brand\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\CustomerInfo\Create.cshtml" />
+    <Content Include="Views\CustomerInfo\Delete.cshtml" />
+    <Content Include="Views\CustomerInfo\Details.cshtml" />
+    <Content Include="Views\CustomerInfo\Edit.cshtml" />
+    <Content Include="Views\CustomerInfo\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Email\Create.cshtml" />
+    <Content Include="Views\Email\Delete.cshtml" />
+    <Content Include="Views\Email\Details.cshtml" />
+    <Content Include="Views\Email\Edit.cshtml" />
+    <Content Include="Views\Email\Index.cshtml" />
     <Content Include="Views\ItemDelivery\Create.cshtml" />
     <Content Include="Views\ItemDelivery\Delete.cshtml" />
     <Content Include="Views\ItemDelivery\Details.cshtml" />
@@ -330,16 +322,21 @@
     <Content Include="Views\UserComments\Details.cshtml" />
     <Content Include="Views\UserComments\Edit.cshtml" />
     <Content Include="Views\UserComments\Index.cshtml" />
-    <Content Include="Views\UserPassword\Create.cshtml" />
-    <Content Include="Views\UserPassword\Delete.cshtml" />
-    <Content Include="Views\UserPassword\Details.cshtml" />
-    <Content Include="Views\UserPassword\Edit.cshtml" />
-    <Content Include="Views\UserPassword\Index.cshtml" />
     <Content Include="Views\UserQuery\Create.cshtml" />
     <Content Include="Views\UserQuery\Delete.cshtml" />
     <Content Include="Views\UserQuery\Details.cshtml" />
     <Content Include="Views\UserQuery\Edit.cshtml" />
     <Content Include="Views\UserQuery\Index.cshtml" />
+    <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserLogin\UserLogin.cshtml" />
+    <Content Include="Views\AdminLogin\AdminLogin.cshtml" />
+    <Content Include="Views\Shared\_LayoutLoggedIn.cshtml" />
+    <Content Include="Views\UserPassword\Create.cshtml" />
+    <Content Include="Views\UserPassword\Delete.cshtml" />
+    <Content Include="Views\UserPassword\Details.cshtml" />
+    <Content Include="Views\UserPassword\Edit.cshtml" />
+    <Content Include="Views\UserPassword\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

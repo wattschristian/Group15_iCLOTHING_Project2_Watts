@@ -1,0 +1,16 @@
+﻿@model Group15_iCLOTHINGApp.Models.Administrator
+
+@using (Html.BeginForm("Validate", "AdminLogin"))
+{
+    <span>User Name</span>
+    <input required="required" type="text" name="Email" />
+    <br />
+    <span>Password</span>
+    <input required="required" type="password" name="Password" />
+    <br />
+    <input type="submit" value="Login" />
+}
+
+@if (TempData["Message"] != null)
+{
+    <span style="color:red;">@TempData["Message"].ToString()</span>

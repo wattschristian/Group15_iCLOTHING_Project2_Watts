@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\watts\Source\Repos\Group15_iCLOTHING_Project2_Watts\Group15_iCLOTHINGApp\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\watts\source\repos\Group15_iCLOTHING_Project2_Watts\Group15_iCLOTHINGApp\Models\Models.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
