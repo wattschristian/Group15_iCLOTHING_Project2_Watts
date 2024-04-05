@@ -1,6 +1,8 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 public class UserLoginController : Controller
@@ -22,7 +24,7 @@ public class UserLoginController : Controller
         {
             if (user.userAccountName == up.userAccountName && user.userEncryptedPassword == up.userEncryptedPassword)
             {
-                Session.Add("UserID", user.userAccountName);
+                Session.Add("UserID", user.userID);
                 return RedirectToAction("Index", "Home");
             }
         }

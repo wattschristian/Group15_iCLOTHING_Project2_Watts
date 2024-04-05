@@ -133,7 +133,6 @@
     <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\CustomerInfoController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -285,11 +284,6 @@
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\CustomerInfo\Create.cshtml" />
-    <Content Include="Views\CustomerInfo\Delete.cshtml" />
-    <Content Include="Views\CustomerInfo\Details.cshtml" />
-    <Content Include="Views\CustomerInfo\Edit.cshtml" />
-    <Content Include="Views\CustomerInfo\Index.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Department\Details.cshtml" />
@@ -315,33 +309,21 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\ShoppingCart\Create.cshtml" />
-    <Content Include="Views\ShoppingCart\Delete.cshtml" />
-    <Content Include="Views\ShoppingCart\Details.cshtml" />
-    <Content Include="Views\ShoppingCart\Edit.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\UserComments\Create.cshtml" />
     <Content Include="Views\UserComments\Delete.cshtml" />
     <Content Include="Views\UserComments\Details.cshtml" />
     <Content Include="Views\UserComments\Edit.cshtml" />
     <Content Include="Views\UserComments\Index.cshtml" />
-    <Content Include="Views\UserQuery\Create.cshtml" />
-    <Content Include="Views\UserQuery\Delete.cshtml" />
-    <Content Include="Views\UserQuery\Details.cshtml" />
-    <Content Include="Views\UserQuery\Edit.cshtml" />
     <Content Include="Views\UserQuery\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserLogin\UserLogin.cshtml" />
     <Content Include="Views\AdminLogin\AdminLogin.cshtml" />
     <Content Include="Views\Shared\_LayoutLoggedIn.cshtml" />
-    <Content Include="Views\UserPassword\Create.cshtml" />
-    <Content Include="Views\UserPassword\Delete.cshtml" />
-    <Content Include="Views\UserPassword\Details.cshtml" />
-    <Content Include="Views\UserPassword\Edit.cshtml" />
-    <Content Include="Views\UserPassword\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Administrator\MaintainCatalog.cshtml" />
     <Content Include="Views\Administrator\ManageOrders.cshtml" />
+    <Content Include="Views\UserPassword\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

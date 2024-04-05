@@ -1,4 +1,5 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -44,10 +45,13 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "commentNo,commentDate,commentDescription")] UserComments userComments)
+        public ActionResult Create([Bind(Include = "commentDate,commentDescription")] UserComments userComments)
         {
             if (ModelState.IsValid)
             {
+                Random rnd = new Random();
+                userComments.commentNo = rnd.Next(1000, 9999).ToString();
+                userComments.customerID = Session["UserID"].ToString();
                 db.UserComments.Add(userComments);
                 db.SaveChanges();
                 return RedirectToAction("Index");

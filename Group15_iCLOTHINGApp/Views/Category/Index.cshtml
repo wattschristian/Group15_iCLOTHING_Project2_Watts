@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "Categories";
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
 }
+
 @if (Session["UserID"] != null)
 {
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
-else if (Session["AdminID"] != null)
-{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 else
 {
@@ -17,6 +18,7 @@ else
 }
 
 <h2>@ViewBag.Title</h2>
+<a href="@ViewBag.ReturnURL">Back</a>
 <table class="table" cellspacing="5">
     <tr>
         <th>

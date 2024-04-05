@@ -1,7 +1,9 @@
 ﻿using Group15_iCLOTHINGApp.Models;
 using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -23,7 +25,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View();
         }
 
-        public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "")
+        public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "", string searchString = "EMPTY")
         {
             List<Product> products = db.Product.ToList();
             List<Product> filteredProducts = new List<Product>();
@@ -38,6 +40,14 @@ namespace Group15_iCLOTHINGApp.Controllers
             else if (!departmentID.Equals(""))
             {
                 filteredProducts = db.Product.Where(p => p.departmentID.Equals(departmentID)).Select(p => p).ToList();
+            }
+            else if (!searchString.Equals("EMPTY"))
+            {
+                filteredProducts = db.Product.Where(p => p.productName.Contains(searchString)
+                || p.productDescription.Contains(searchString)).Select(p => p).ToList();
+                if(!searchString.Equals(""))
+                    Session["products"] = filteredProducts;
+                return RedirectToAction("Index", "UserQuery");
             }
             TempData["products"] = filteredProducts;
             return RedirectToAction("Index");
@@ -111,10 +121,12 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty,brandID,categoryID,departmentID")] Product product)
+        public ActionResult Create([Bind(Include = "productName,productDescription,productPrice,productQty,brandID,categoryID,departmentID")] Product product)
         {
             if (ModelState.IsValid)
             {
+                Random rnd = new Random();
+                product.productID = rnd.Next(1000, 9999).ToString();
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");

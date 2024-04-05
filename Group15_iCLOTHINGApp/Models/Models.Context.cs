@@ -18,6 +18,7 @@ namespace Group15_iCLOTHINGApp.Models
         public Group15_iCLOTHINGDBEntities()
             : base("name=Group15_iCLOTHINGDBEntities")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
