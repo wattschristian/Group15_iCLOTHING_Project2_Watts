@@ -23,7 +23,7 @@ public class UserLoginController : Controller
             if (user.userAccountName == up.userAccountName && user.userEncryptedPassword == up.userEncryptedPassword)
             {
                 Session.Add("UserID", user.userAccountName);
-                return RedirectToAction("UserIndex", "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
         return RedirectToAction("Create", "UserPassword");

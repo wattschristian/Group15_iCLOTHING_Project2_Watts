@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (Session["UserID"] == null)
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
 
 <h2>Index</h2>
 
@@ -20,20 +28,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.queryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.queryDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.queryNo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.queryNo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.queryNo })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.queryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.queryDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.queryNo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.queryNo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.queryNo })
+            </td>
+        </tr>
+    }
 
 </table>

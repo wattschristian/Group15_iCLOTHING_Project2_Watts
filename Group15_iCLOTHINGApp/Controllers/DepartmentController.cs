@@ -48,7 +48,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 db.Department.Add(department);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
 
             return View(department);

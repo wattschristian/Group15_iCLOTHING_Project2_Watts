@@ -6,8 +6,13 @@ namespace Group15_iCLOTHINGApp.Controllers
     public class HomeController : Controller
     {
         Group15_iCLOTHINGDBEntities db = new Group15_iCLOTHINGDBEntities();
-        public ActionResult Index()
+        public ActionResult Index(bool logoutflag = false)
         {
+            if (logoutflag)
+            {
+                Session["UserID"] = null;
+                Session["AdminID"] = null;
+            }
             return View(db.Product);
         }
 

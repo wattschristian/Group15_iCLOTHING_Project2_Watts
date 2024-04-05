@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "MaintainCatalog";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Maintain Catalog</h2>
+<br /><br />
+<h4>Products</h4>
+<p>
+    @Html.ActionLink("Create New", "Create", "Product")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th></th>
+    </tr>
+    @foreach (var item in ViewBag.Products)
+    {
+        <tr>
+            <td>
+                <p>@item.productName</p>
+            </td>
+            <td>
+                <p>@item.productDescription</p>
+            </td>
+            <td>
+                <p>@item.productPrice</p>
+            </td>
+            <td>
+                <p>@item.productQty</p>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Product", new { id = item.productID }, null) |
+                @Html.ActionLink("Details", "Details", "Product", new { id = item.productID }, null) |
+                @Html.ActionLink("Delete", "Delete", "Product", new { id = item.productID }, null)
+            </td>
+        </tr>
+    }
+</table>
+<br /><br />
+<h4>Categories</h4>
+<p>
+    @Html.ActionLink("Create New", "Create", "Category")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    @foreach (var item in ViewBag.Categories)
+    {
+        <tr>
+            <td>
+                <p>@item.categoryName</p>
+            </td>
+            <td>
+                <p>@item.categoryDescription</p>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Category", new { id = item.categoryID }, null) |
+                @Html.ActionLink("Details", "Details", "Category", new { id = item.categoryID }, null)
+            </td>
+        </tr>
+    }
+</table>
+<br /><br />
+<h4>Departments</h4>
+<p>
+    @Html.ActionLink("Create New", "Create", "Department")
+</p>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    @foreach (var item in ViewBag.Departments)
+    {
+        <tr>
+            <td>
+                <p>@item.departmentName</p>
+            </td>
+            <td>
+                <p>@item.departmentDescription</p>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Department", new { id = item.departmentID }, null) |
+                @Html.ActionLink("Details", "Details", "Department", new { id = item.departmentID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+

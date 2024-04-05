@@ -1,6 +1,18 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+@if (Session["UserID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+else if (Session["AdminID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title</h2>
     <h4>@ViewBag.Message</h4>
