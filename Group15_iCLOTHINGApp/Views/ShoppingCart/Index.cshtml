@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.ShoppingCart>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cart";
 }
 @if (Session["UserID"] == null)
 {
@@ -12,7 +12,7 @@ else
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")

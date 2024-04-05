@@ -1,5 +1,7 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Data.Entity;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -42,10 +44,12 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "departmentID,departmentName,departmentDescription")] Department department)
+        public ActionResult Create([Bind(Include = "departmentName,departmentDescription")] Department department)
         {
             if (ModelState.IsValid)
             {
+                Random rnd = new Random();
+                department.departmentID = rnd.Next(1000, 9999).ToString();
                 db.Department.Add(department);
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");

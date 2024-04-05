@@ -1,7 +1,9 @@
 ﻿using Group15_iCLOTHINGApp.Models;
 using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -111,10 +113,12 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty,brandID,categoryID,departmentID")] Product product)
+        public ActionResult Create([Bind(Include = "productName,productDescription,productPrice,productQty,brandID,categoryID,departmentID")] Product product)
         {
             if (ModelState.IsValid)
             {
+                Random rnd = new Random();
+                product.productID = rnd.Next(1000, 9999).ToString();
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");

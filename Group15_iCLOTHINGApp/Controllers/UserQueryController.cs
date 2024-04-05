@@ -13,7 +13,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: UserQuery
         public ActionResult Index()
         {
-            return View(db.UserQuery.ToList());
+            return View(db.Product.ToList());
         }
 
         // GET: UserQuery/Details/5
