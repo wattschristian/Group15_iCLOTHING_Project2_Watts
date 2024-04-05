@@ -3,6 +3,18 @@
 @{
     ViewBag.Title = "Feedback";
 }
+@if (Session["UserID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+else if (Session["AdminID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h2>@ViewBag.Title</h2>
 
@@ -20,20 +32,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.commentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.commentDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.commentNo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.commentNo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.commentNo })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.commentNo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.commentNo })
+            </td>
+        </tr>
+    }
 
 </table>

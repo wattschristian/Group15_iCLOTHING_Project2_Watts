@@ -25,6 +25,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 if (admin.adminName == a.adminName && admin.adminEncryptedPassword == a.adminEncryptedPassword)
                 {
+                    Session.Add("AdminID", a.adminName.ToUpper());
                     return RedirectToAction("Index", "Administrator");
                 }
             }

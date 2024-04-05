@@ -3,37 +3,18 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-@*   @Html.ActionLink("Brands", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Categories", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Departments", "Index", "Department", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Feedback", "Index", "UserComments", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Search", "Index", "UserQuery", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "nav-link" })
-    @Html.ActionLink("Log In/Register", "UserLogin", "UserLogin", new { area = "" }, new { @class = "nav-link" })
-
-        <div>
-        @Html.ActionLink("Brands", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })
-        <img src="~/Content/Images/cat.jpg" alt="...">
-    </div>
-*@
-
-<style>
-    img {
-       
-        width: 100%;
-        height: 80%;
-        object-fit: cover;
-    }
+@if (Session["UserID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+else if (Session["AdminID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 </style>
 
 

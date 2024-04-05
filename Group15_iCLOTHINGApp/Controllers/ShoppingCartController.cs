@@ -13,6 +13,8 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: ShoppingCart
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+                return RedirectToAction("UserLogin", "UserLogin");
             return View(db.ShoppingCart.ToList());
         }
 

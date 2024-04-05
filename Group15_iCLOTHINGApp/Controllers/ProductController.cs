@@ -111,13 +111,13 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty,brandId,categoryID,departmentID")] Product product)
+        public ActionResult Create([Bind(Include = "productID,productName,productDescription,productPrice,productQty,brandID,categoryID,departmentID")] Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Product.Add(product);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
 
             return View(product);

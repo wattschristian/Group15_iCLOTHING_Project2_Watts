@@ -1,7 +1,19 @@
 ﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.Department>
 
 @{
-    ViewBag.Title = "Department";
+    ViewBag.Title = "Departments";
+}
+@if (Session["UserID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+else if (Session["AdminID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -15,7 +27,8 @@
         </th>
         <th></th>
     </tr>
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.departmentName)

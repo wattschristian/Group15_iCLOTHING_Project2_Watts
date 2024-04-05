@@ -17,9 +17,9 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Maintain Catalog", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Manage Orders", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Logout", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Maintain Catalog", "MaintainCatalog", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Manage Orders", "ManageOrders", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Logout", "Index", "Home", new { logoutflag=true }, new { @class = "nav-link" })</li>
                   </ul>
             </div>
         </div>

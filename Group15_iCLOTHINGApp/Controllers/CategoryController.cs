@@ -46,9 +46,10 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.departmentID = "5679";
                 db.Category.Add(category);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
 
             return View(category);
