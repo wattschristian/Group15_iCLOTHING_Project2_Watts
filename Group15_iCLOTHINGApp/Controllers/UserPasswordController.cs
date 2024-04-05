@@ -36,9 +36,9 @@ namespace Group15_iCLOTHINGApp.Controllers
                 customer.customerName = userPassword.userAccountName;
                 customer.userEncryptedPassword = userPassword.userEncryptedPassword;
                 db.CustomerInfo.Add(customer);
-                Session.Add("UserID", userPassword.userAccountName);
+                Session.Add("UserID", userPassword.userID);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("UserLogin", "UserLogin");
             }
             return View(userPassword);
         }

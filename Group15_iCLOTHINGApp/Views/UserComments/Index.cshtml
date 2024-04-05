@@ -2,22 +2,16 @@
 
 @{
     ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
     if (Request.UrlReferrer != null)
     {
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
 }
-@if (Session["UserID"] != null)
-{
-    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
-else
-{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <h2>@ViewBag.Title</h2>
 <a href="@ViewBag.ReturnURL">Back</a>
+<br /><br />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

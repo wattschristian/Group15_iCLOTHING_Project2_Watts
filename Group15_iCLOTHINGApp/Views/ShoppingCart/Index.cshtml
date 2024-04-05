@@ -2,33 +2,20 @@
 
 @{
     ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
     if (Request.UrlReferrer != null)
     {
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
 }
-@if (Session["UserID"] == null)
-{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-else
-{
-    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
 
 <h2>@ViewBag.Title</h2>
 <a href="@ViewBag.ReturnURL">Back</a>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table" cellspacing="5">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.cartProductPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cartProductQty)
-        </th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
         <th></th>
     </tr>
 
@@ -40,11 +27,6 @@ else
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cartProductQty)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.cartID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.cartID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.cartID })
             </td>
         </tr>
     }

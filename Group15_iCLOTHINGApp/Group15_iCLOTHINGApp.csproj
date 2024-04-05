@@ -309,10 +309,6 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\ShoppingCart\Create.cshtml" />
-    <Content Include="Views\ShoppingCart\Delete.cshtml" />
-    <Content Include="Views\ShoppingCart\Details.cshtml" />
-    <Content Include="Views\ShoppingCart\Edit.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\UserComments\Create.cshtml" />
     <Content Include="Views\UserComments\Delete.cshtml" />

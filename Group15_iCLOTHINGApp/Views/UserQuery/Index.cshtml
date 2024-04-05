@@ -32,6 +32,7 @@ else
         <th>Description</th>
         <th>Price</th>
         <th>In Stock</th>
+        <th>Quantity</th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -49,7 +50,17 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.productQty)
             </td>
-            @*<td>@Html.ActionLink("Add to Cart", "", "", item, null)</td>*@
+            <td id="quantities">
+                <input type="number" min="0" max="@item.productQty" />
+            </td>
+            <td>
+                @Html.ActionLink("Add to Cart", "AddItemToCart", "UserQuery", new { product=item }, null)
+            </td>
+            @*<td><a href="#" onclick="window.location.href = '@Url.Action("AddItem", "ShoppingCart")'
+        + '?productID=@item.productID' + '?quantity=' + $('quantity').val()">Add to Cart</a></td>*@
         </tr>
     }
 </table>
+<script>
+
+</script>

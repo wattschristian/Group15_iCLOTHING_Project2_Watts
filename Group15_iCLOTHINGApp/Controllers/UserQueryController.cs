@@ -1,4 +1,5 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -20,6 +21,22 @@ namespace Group15_iCLOTHINGApp.Controllers
                 return View(products);
             }
             return View(db.Product.ToList());
+        }
+
+        public ActionResult AddItemToCart(Product product, int quantity=1)
+        {
+            if (Session["UserID"] == null)
+                return RedirectToAction("UserLogin", "UserLogin");
+            Random rnd = new Random();
+            ShoppingCart cart = new ShoppingCart();
+            cart.cartID = rnd.Next(1000, 9999);
+            cart.cartProductPrice = product.productPrice;
+            cart.cartProductQty = quantity;
+            cart.customerID = Session["UserID"].ToString();
+            cart.productID = product.productID;
+            db.ShoppingCart.Add(cart);
+            db.SaveChanges();
+            return View();
         }
 
         protected override void Dispose(bool disposing)
