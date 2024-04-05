@@ -260,6 +260,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Stylesheets\BrandStyleSheet.css" />
+    <Content Include="Stylesheets\CategoryStyleSheet.css" />
+    <Content Include="Stylesheets\DepartmentStyleSheet.css" />
+    <Content Include="Stylesheets\NavBarStyleSheet.css" />
+    <Content Include="Stylesheets\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
