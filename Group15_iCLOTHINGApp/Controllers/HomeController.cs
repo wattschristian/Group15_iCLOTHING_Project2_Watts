@@ -11,12 +11,15 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View(db.Product);
         }
 
-        public ActionResult Logout(string cartID) 
+        public ActionResult Logout() 
         {
+            string cartID = Session["CartID"].ToString();
             Session["UserID"] = null;
             Session["AdminID"] = null;
-            if(db.ShoppingCart.Find(cartID) != null)
+            Session["CartID"] = null;
+            while(db.ShoppingCart.Find(cartID) != null)
                 db.ShoppingCart.Remove(db.ShoppingCart.Find(cartID));
+            db.SaveChanges();
             return View("Index");
         }
 
