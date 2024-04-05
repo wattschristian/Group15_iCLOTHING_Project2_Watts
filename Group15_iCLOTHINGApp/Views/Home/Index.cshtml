@@ -4,41 +4,86 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="row" aria-labelledby="homeTitle">
-    <h1 id="title">Welcome!</h1>
-    <br />
-    <h4>Catalog</h4>
-</section>
-<ul>
-    <li>@Html.ActionLink("Brand Create", "Create", "Brand", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Category Create", "Create", "Category", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Department Create", "Create", "Department", new { area = "" }, new { @class = "nav-link" })</li>
-    <li>@Html.ActionLink("Product Create", "Create", "Product", new { area = "" }, new { @class = "nav-link" })</li>
-</ul>
-<table class="table" cellpadding="5">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>In Stock</th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.productName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.productDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.productPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.productQty)
-            </td>
-        </tr>
+head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+@*   @Html.ActionLink("Brands", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Categories", "Index", "Category", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Departments", "Index", "Department", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Feedback", "Index", "UserComments", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Search", "Index", "UserQuery", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "nav-link" })
+    @Html.ActionLink("Log In/Register", "UserLogin", "UserLogin", new { area = "" }, new { @class = "nav-link" })
+
+        <div>
+        @Html.ActionLink("Brands", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })
+        <img src="~/Content/Images/cat.jpg" alt="...">
+    </div>
+*@
+
+<style>
+    img {
+       
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
     }
-</table>
+</style>
+
+
+<body style="background-color:powderblue;">
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/Content/Images/brands.png" alt="..." />
+            <h3><a href="~/Brand/Index">Brands</a></h3>
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Content/Images/categories.jpg" alt="..." />
+            <h3><a href="~/Category/Index">Categories</a></h3>
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Content/Images/departments.jpg" alt="..." />
+            <h3><a href="~/Department/Index">Departments</a></h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/Content/Images/about.jpg" alt="..." />
+            <h3><a href="~/Home/About">About</a></h3>
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Content/Images/contact.png" alt="..." />          
+            <h3><a href="~/Home/Contact">Contact Us</a></h3>
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Content/Images/feedback.png" alt="..." />        
+            <h3><a href="~/UserComments/Index">Feedback</a></h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+             <img src="~/Content/Images/search.png" alt="..." />
+             <h3><a href="~/UserQuery/Index">Search</a></h3>
+        </div>
+        <div class="col-sm-4">
+             <img src="~/Content/Images/shoppingcart.png" alt="..." />
+             <h3><a href="~/ShoppingCart/Index">Cart</a></h3>
+        </div>
+        <div class="col-sm-4">
+            <img src="~/Content/Images/login.png" alt="..." />
+            <h3><a href="~/UserLogin/UserLogin">Log In/Register</a></h3>
+        </div>
+    </div>
+        
+</body>
 
