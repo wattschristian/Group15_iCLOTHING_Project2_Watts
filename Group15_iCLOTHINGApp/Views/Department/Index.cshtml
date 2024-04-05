@@ -16,32 +16,35 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    <link rel="stylesheet" href="../../Stylesheets/DepartmentStyleSheet.css" />
+</head>
 <h2>@ViewBag.Title</h2>
-<a href="@ViewBag.ReturnURL">Back</a>
-<table class="table" cellspacing="5">
-    <tr>
-        <th>
-            Department
-        </th>
-        <th>
-            Description
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<div class="department-container">
+    <table class="table" cellspacing="5">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.departmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.departmentDescription)
-            </td>
-            <td>
-                @Html.ActionLink("View", "Filter", "Product", new { departmentID = item.departmentID }, new { @class = "nav-link" })
-            </td>
+            <th>
+                Department
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
         </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.departmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.departmentDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "Filter", "Product", new { departmentID = item.departmentID }, new { @class = "nav-link" })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>
