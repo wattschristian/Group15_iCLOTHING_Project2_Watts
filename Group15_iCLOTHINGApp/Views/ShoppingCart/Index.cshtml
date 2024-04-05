@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Cart";
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
 }
 @if (Session["UserID"] == null)
 {
@@ -13,7 +17,7 @@ else
 }
 
 <h2>@ViewBag.Title</h2>
-
+<a href="@ViewBag.ReturnURL">Back</a>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

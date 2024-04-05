@@ -16,11 +16,6 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View(db.Product);
         }
 
-        public ActionResult UserIndex()
-        {
-            return View(db.Product);
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Welcome to iCLOTHING! We are dedicated to bringing you quality products at an affordable price.";

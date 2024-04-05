@@ -2,7 +2,12 @@
 
 @{
     ViewBag.Title = "Search Catalog";
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
 }
+
 @if (Session["UserID"] != null)
 {
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
@@ -13,6 +18,14 @@ else
 }
 
 <h2>@ViewBag.Title</h2>
+<a href="@ViewBag.ReturnURL">Back</a>
+@using (Html.BeginForm("Filter", "Product"))
+{
+    <p>
+        Search: <input type="text" name="searchString" />
+        <input type="submit" />
+    </p>
+}
 <table class="table" cellpadding="5">
     <tr>
         <th>Name</th>
@@ -36,7 +49,7 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.productQty)
             </td>
-            <td>@Html.ActionLink("Add to Cart", "", "", item, null)</td>
+            @*<td>@Html.ActionLink("Add to Cart", "", "", item, null)</td>*@
         </tr>
     }
 </table>

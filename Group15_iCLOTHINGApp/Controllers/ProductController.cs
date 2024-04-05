@@ -25,7 +25,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View();
         }
 
-        public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "")
+        public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "", string searchString = "EMPTY")
         {
             List<Product> products = db.Product.ToList();
             List<Product> filteredProducts = new List<Product>();
@@ -40,6 +40,14 @@ namespace Group15_iCLOTHINGApp.Controllers
             else if (!departmentID.Equals(""))
             {
                 filteredProducts = db.Product.Where(p => p.departmentID.Equals(departmentID)).Select(p => p).ToList();
+            }
+            else if (!searchString.Equals("EMPTY"))
+            {
+                filteredProducts = db.Product.Where(p => p.productName.Contains(searchString)
+                || p.productDescription.Contains(searchString)).Select(p => p).ToList();
+                if(!searchString.Equals(""))
+                    Session["products"] = filteredProducts;
+                return RedirectToAction("Index", "UserQuery");
             }
             TempData["products"] = filteredProducts;
             return RedirectToAction("Index");

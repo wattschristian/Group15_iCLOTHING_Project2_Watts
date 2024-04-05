@@ -319,10 +319,6 @@
     <Content Include="Views\UserComments\Details.cshtml" />
     <Content Include="Views\UserComments\Edit.cshtml" />
     <Content Include="Views\UserComments\Index.cshtml" />
-    <Content Include="Views\UserQuery\Create.cshtml" />
-    <Content Include="Views\UserQuery\Delete.cshtml" />
-    <Content Include="Views\UserQuery\Details.cshtml" />
-    <Content Include="Views\UserQuery\Edit.cshtml" />
     <Content Include="Views\UserQuery\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserLogin\UserLogin.cshtml" />
