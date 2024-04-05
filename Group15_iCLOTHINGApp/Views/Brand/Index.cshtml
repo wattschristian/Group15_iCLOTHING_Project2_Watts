@@ -16,27 +16,30 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    <link rel="stylesheet" href="../../StyleSheets/BrandStyleSheet.css"">
+</head>
 <h2>@ViewBag.Title</h2>
-<a href="@ViewBag.ReturnURL">Back</a>
-<table class="table" cellspacing="5">
-    <tr>
-        <th>Brand Name</th>
-        <th>Brand Description</th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<div class="brand-container">
+    <table class="table" cellspacing="5">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.brandName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.brandDescription)
-            </td>
-            <td>
-                @Html.ActionLink("View", "Filter", "Product", new { brandID = item.brandID }, new { @class = "nav-link" })
-            </td>
+            <th>Brand Name</th>
+            <th>Brand Description</th>
+            <th></th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brandDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "Filter", "Product", new { brandID = item.brandID }, new { @class = "nav-link" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

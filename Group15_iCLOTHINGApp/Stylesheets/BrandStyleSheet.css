@@ -1,0 +1,47 @@
+﻿/* Style for the brand container */
+.brand-container {
+    padding: 20px;
+}
+
+    /* Style for the table */
+    .brand-container .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-top: 20px;
+    }
+
+        /* Style for table headers */
+        .brand-container .table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style for table cells */
+        .brand-container .table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Style for table rows */
+        .brand-container .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+    /* Style for "Back" link */
+    .brand-container a {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        .brand-container a:hover {
+            background-color: #0056b3;
+        }
