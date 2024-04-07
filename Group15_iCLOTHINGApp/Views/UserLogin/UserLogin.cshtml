@@ -4,7 +4,6 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.Label("User Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -29,10 +28,4 @@
             </div>
         </div>
     </div>
-    
-}
-
-@if (TempData["Message"] != null)
-{
-    <span style="color:red;">@TempData["Message"].ToString()</span>
 }

@@ -1,0 +1,60 @@
+﻿@model Group15_iCLOTHINGApp.Models.CustomerInfo
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+    List<string> genders = new List<string>();
+    genders.Add("Male");
+    genders.Add("Female");
+    ViewBag.Genders = genders;
+}
+
+<h2>Checkout</h2>
+<hr />
+@using (Html.BeginForm("Summary", "OrderStatus"))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Shipping Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.customerShippingAddress, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Billing Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.customerBillingAddress, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.Label("Card Number", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("CardNum", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Card Expiration Date")
+            <div class="col-md-10">
+                @Html.Editor("CardNum", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("CVV", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("CVV", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <br />
+        @Html.DropDownListFor(model => model.customerGender,
+                               new SelectList(ViewBag.Genders),
+                               "Select Gender",
+                               new { @class = "form-control" })
+        <div class="form-group">
+            <br />
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    </div>
+}
+        

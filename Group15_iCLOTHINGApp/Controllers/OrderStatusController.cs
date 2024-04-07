@@ -1,4 +1,6 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,6 +16,35 @@ namespace Group15_iCLOTHINGApp.Controllers
         public ActionResult Index()
         {
             return View(db.OrderStatus.ToList());
+        }
+
+        public ActionResult Checkout()
+        {
+            if(db.ShoppingCart.ToList().Count > 0)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "ShoppingCart");
+        }
+
+        public ActionResult Summary(CustomerInfo customer)
+        {
+            OrderStatus customerOrder = db.OrderStatus.Where(o => o.customerID == customer.customerID).First();
+            List<ShoppingCart> cart = db.ShoppingCart.ToList();
+            CustomerInfo customerInfo = db.CustomerInfo.Where(c => c.customerID == customer.customerID).First();
+            customerInfo.customerShippingAddress = customer.customerShippingAddress;
+            customerInfo.customerBillingAddress = customer.customerBillingAddress;
+            customerInfo.customerDOB = customer.customerDOB;
+            customerInfo.customerGender = customer.customerGender;
+            db.CustomerInfo.Attach(customerInfo);
+            string estimatedShipping = DateTime.Now.AddDays(7).ToString();
+            Tuple<int, List<ShoppingCart>, string, string> orderSummary = Tuple.Create(customerOrder.statusID, cart, customer.customerName, estimatedShipping);
+            foreach(var item in db.ShoppingCart)
+            {
+                db.ShoppingCart.Remove(item);
+            }
+            db.SaveChanges();
+            return View(orderSummary);
         }
 
         // GET: OrderStatus/Details/5

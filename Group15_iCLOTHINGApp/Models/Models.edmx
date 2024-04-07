@@ -93,6 +93,7 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="orderStatus" Type="varchar" MaxLength="50" />
           <Property Name="statusDate" Type="date" />
           <Property Name="adminUpdated" Type="varchar" MaxLength="50" />
+          <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -117,6 +118,7 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="productID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="statusID" Type="int" Nullable="false" />
+          <Property Name="cartProductName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserComments">
           <Key>
@@ -154,6 +156,18 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
               <PropertyRef Name="userID" />
             </Principal>
             <Dependent Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="OrderStatus">
               <PropertyRef Name="customerID" />
             </Dependent>
           </ReferentialConstraint>
@@ -260,18 +274,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Has Status">
-          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
-          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderStatus">
-              <PropertyRef Name="statusID" />
-            </Principal>
-            <Dependent Role="ShoppingCart">
-              <PropertyRef Name="statusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Manages">
           <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
           <End Role="AboutUs" Type="Self.AboutUs" Multiplicity="0..1" />
@@ -360,6 +362,10 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             <End Role="UserPassword" EntitySet="UserPassword" />
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
           </AssociationSet>
+          <AssociationSet Name="Customer" Association="Self.Customer">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
           <AssociationSet Name="Customer's Cart" Association="Self.Customer's Cart">
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
@@ -391,10 +397,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <AssociationSet Name="Has Product ID" Association="Self.Has Product ID">
             <End Role="Product" EntitySet="Product" />
             <End Role="ItemDelivery" EntitySet="ItemDelivery" />
-          </AssociationSet>
-          <AssociationSet Name="Has Status" Association="Self.Has Status">
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
           </AssociationSet>
           <AssociationSet Name="Manages" Association="Self.Manages">
             <End Role="Administrator" EntitySet="Administrator" />
@@ -466,6 +468,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="customerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="userEncryptedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UserPassword" Relationship="Self.Authenticated_By" FromRole="CustomerInfo" ToRole="UserPassword" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.Customer" FromRole="CustomerInfo" ToRole="OrderStatus" />
           <NavigationProperty Name="ShoppingCart" Relationship="Self.Customer_s_Cart" FromRole="CustomerInfo" ToRole="ShoppingCart" />
           <NavigationProperty Name="ItemDelivery" Relationship="Self.FK_ItemDelivery_CustomerInfo" FromRole="CustomerInfo" ToRole="ItemDelivery" />
           <NavigationProperty Name="UserQuery" Relationship="Self.FK_UserQuery_CustomerInfo" FromRole="CustomerInfo" ToRole="UserQuery" />
@@ -513,8 +516,9 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="orderStatus1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="statusDate" Type="DateTime" Precision="0" />
           <Property Name="adminUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Administrator" Relationship="Self.FK_OrderStatus_Administrator" FromRole="OrderStatus" ToRole="Administrator" />
-          <NavigationProperty Name="ShoppingCart" Relationship="Self.Has_Status" FromRole="OrderStatus" ToRole="ShoppingCart" />
+          <NavigationProperty Name="CustomerInfo" Relationship="Self.Customer" FromRole="OrderStatus" ToRole="CustomerInfo" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -544,8 +548,8 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="statusID" Type="Int32" Nullable="false" />
+          <Property Name="cartProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomerInfo" Relationship="Self.Customer_s_Cart" FromRole="ShoppingCart" ToRole="CustomerInfo" />
-          <NavigationProperty Name="OrderStatus" Relationship="Self.Has_Status" FromRole="ShoppingCart" ToRole="OrderStatus" />
           <NavigationProperty Name="Product" Relationship="Self.Product_In_Cart" FromRole="ShoppingCart" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserComments">
@@ -663,6 +667,18 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Customer">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Customer_s_Cart">
           <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
           <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
@@ -747,18 +763,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Has_Status">
-          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
-          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderStatus">
-              <PropertyRef Name="statusID" />
-            </Principal>
-            <Dependent Role="ShoppingCart">
-              <PropertyRef Name="statusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Product_In_Cart">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
@@ -810,6 +814,10 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             <End Role="UserPassword" EntitySet="UserPassword" />
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
           </AssociationSet>
+          <AssociationSet Name="Customer" Association="Self.Customer">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
           <AssociationSet Name="Customer_s_Cart" Association="Self.Customer_s_Cart">
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
@@ -837,10 +845,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <AssociationSet Name="Has_Product_ID" Association="Self.Has_Product_ID">
             <End Role="Product" EntitySet="Product" />
             <End Role="ItemDelivery" EntitySet="ItemDelivery" />
-          </AssociationSet>
-          <AssociationSet Name="Has_Status" Association="Self.Has_Status">
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
           </AssociationSet>
           <AssociationSet Name="Product_In_Cart" Association="Self.Product_In_Cart">
             <End Role="Product" EntitySet="Product" />
@@ -934,6 +938,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
                 <ScalarProperty Name="orderStatus1" ColumnName="orderStatus" />
                 <ScalarProperty Name="statusDate" ColumnName="statusDate" />
                 <ScalarProperty Name="adminUpdated" ColumnName="adminUpdated" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -960,6 +965,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
                 <ScalarProperty Name="customerID" ColumnName="customerID" />
                 <ScalarProperty Name="productID" ColumnName="productID" />
                 <ScalarProperty Name="statusID" ColumnName="statusID" />
+                <ScalarProperty Name="cartProductName" ColumnName="cartProductName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

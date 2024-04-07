@@ -1,4 +1,5 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Web.Mvc;
 
 namespace Group15_iCLOTHINGApp.Controllers
@@ -13,13 +14,8 @@ namespace Group15_iCLOTHINGApp.Controllers
 
         public ActionResult Logout() 
         {
-            string cartID = Session["CartID"].ToString();
             Session["UserID"] = null;
             Session["AdminID"] = null;
-            Session["CartID"] = null;
-            while(db.ShoppingCart.Find(cartID) != null)
-                db.ShoppingCart.Remove(db.ShoppingCart.Find(cartID));
-            db.SaveChanges();
             return View("Index");
         }
 
