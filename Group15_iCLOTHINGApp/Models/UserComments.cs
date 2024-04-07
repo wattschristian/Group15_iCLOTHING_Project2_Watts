@@ -18,6 +18,7 @@ namespace Group15_iCLOTHINGApp.Models
         public System.DateTime commentDate { get; set; }
         public string commentDescription { get; set; }
         public string customerID { get; set; }
+        public string customerName { get; set; }
     
         public virtual CustomerInfo CustomerInfo { get; set; }
     }

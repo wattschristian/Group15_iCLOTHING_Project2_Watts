@@ -17,6 +17,7 @@ namespace Group15_iCLOTHINGApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CustomerInfo()
         {
+            this.OrderStatus = new HashSet<OrderStatus>();
             this.ShoppingCart = new HashSet<ShoppingCart>();
             this.ItemDelivery = new HashSet<ItemDelivery>();
             this.UserQuery = new HashSet<UserQuery>();
@@ -33,6 +34,8 @@ namespace Group15_iCLOTHINGApp.Models
         public string userEncryptedPassword { get; set; }
     
         public virtual UserPassword UserPassword { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderStatus> OrderStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

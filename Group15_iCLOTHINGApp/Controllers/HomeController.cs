@@ -1,4 +1,5 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
 using System.Web.Mvc;
 
 namespace Group15_iCLOTHINGApp.Controllers
@@ -11,12 +12,15 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View(db.Product);
         }
 
-        public ActionResult Logout(string cartID) 
+        public ActionResult Logout() 
         {
             Session["UserID"] = null;
             Session["AdminID"] = null;
-            if(db.ShoppingCart.Find(cartID) != null)
-                db.ShoppingCart.Remove(db.ShoppingCart.Find(cartID));
+            foreach (var item in db.ShoppingCart)
+            {
+                db.ShoppingCart.Remove(item);
+            }
+            db.SaveChanges();
             return View("Index");
         }
 

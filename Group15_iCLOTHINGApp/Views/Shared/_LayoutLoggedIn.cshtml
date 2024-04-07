@@ -17,7 +17,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+                <ul id="navbar" class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Brands", "Index", "Brand", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Categories", "Index", "Category", new { area = "" }, new { @class = "nav-link" })</li>
@@ -27,7 +27,8 @@
                     <li>@Html.ActionLink("Feedback", "Index", "UserComments", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Search", "Index", "UserQuery", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Cart", "Index", "ShoppingCart", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Log Out", "Logout", "Home", new { logoutflag = true }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Log Out", "Logout", "Home", new { }, new { @class = "nav-link" })</li>
+                    <li><p class="nav-link">Welcome @(Session["UserName"].ToString().ToUpper())!</p></li>
                 </ul>
             </div>
         </div>
