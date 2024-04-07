@@ -3,16 +3,23 @@
 @{
     ViewBag.Title = "Catalog";
 }
-@if (Session["UserID"] != null)
-{
-    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
-else
-{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{
+    if (Session["UserID"] != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
+} 
 
 <h2>@ViewBag.Title</h2>
+<a href="@ViewBag.ReturnURL">Back</a>
 <table class="table" cellpadding="5">
     <tr>
         <th>Name</th>
@@ -23,7 +30,7 @@ else
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr data-name="@item.productName" data-price="@item.productPrice" data-id="@item.productID">
             <td>
                 @Html.DisplayFor(modelItem => item.productName)
             </td>
@@ -36,6 +43,29 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.productQty)
             </td>
+            <td>
+                <input type="number" min="0" max="@item.productQty" />
+            </td>
+            <td>
+                <input type="button" value="Add to Cart" onclick="addItemsToCart(this)" />
+            </td>
         </tr>
     }
 </table>
+<script>
+    function addItemsToCart(button) {
+        var id = $(button).parent().parent().data("id");
+        var price = $(button).parent().parent().data("price");
+        var name = $(button).parent().parent().data("name");
+        var qtyPickerIndex = $(button).parent().siblings().length - 1;
+        var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
+        var url = '@Url.Action("Index", "ShoppingCart")';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { add_removeFlag: true, productPrice: price, productID: id, productName: name, quantity: qty },
+            dataType: "json",
+            cache: false
+        });
+    }
+</script>

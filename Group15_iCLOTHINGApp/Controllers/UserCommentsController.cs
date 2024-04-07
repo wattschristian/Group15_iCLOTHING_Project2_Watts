@@ -45,7 +45,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "commentDate,commentDescription")] UserComments userComments)
+        public ActionResult Create([Bind(Include = "customerName,commentDate,commentDescription")] UserComments userComments)
         {
             if (ModelState.IsValid)
             {
@@ -80,10 +80,11 @@ namespace Group15_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "commentNo,commentDate,commentDescription")] UserComments userComments)
+        public ActionResult Edit([Bind(Include = "customerName,commentNo,commentDate,commentDescription")] UserComments userComments)
         {
             if (ModelState.IsValid)
             {
+                userComments.customerID = Session["UserID"].ToString();
                 db.Entry(userComments).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

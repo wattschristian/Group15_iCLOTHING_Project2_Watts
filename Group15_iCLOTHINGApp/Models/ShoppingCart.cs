@@ -19,7 +19,7 @@ namespace Group15_iCLOTHINGApp.Models
         public int cartProductQty { get; set; }
         public string customerID { get; set; }
         public string productID { get; set; }
-        public int statusID { get; set; }
+        public string statusID { get; set; }
         public string cartProductName { get; set; }
     
         public virtual CustomerInfo CustomerInfo { get; set; }

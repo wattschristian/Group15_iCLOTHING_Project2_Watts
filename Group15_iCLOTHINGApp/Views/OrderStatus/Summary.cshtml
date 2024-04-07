@@ -1,27 +1,34 @@
 ﻿@using Group15_iCLOTHINGApp.Models;
-@model Tuple<int, List<ShoppingCart>, string, string>
+@model Tuple<string, List<ShoppingCart>, string, string>
 @{
     ViewBag.Title = "Summary";
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
     decimal totalPrice = 0;
+    int totalItems = 0;
     foreach (var item in Model.Item2)
     {
         totalPrice += item.cartProductPrice * item.cartProductQty;
+        totalItems += item.cartProductQty;
     }
     ViewBag.CartTotal = totalPrice;
+    ViewBag.TotalItems = totalItems;
 }
 
 <h2>Order #@Model.Item1 Summary</h2>
-@Html.ActionLink("Back to Home", "Index", "Home");
+@Html.ActionLink("Back to Home", "Index", "Home")
 <hr />
 @Html.Label("Item Count")
-<p>@Model.Item2.Count</p>
+<hr />
+<p>@ViewBag.TotalItems</p>
 <br />
 @Html.Label("Total")
-<p>@ViewBag.CartTotal</p>
+<hr />
+<p>$@ViewBag.CartTotal</p>
 <br />
 @Html.Label("Customer")
+<hr />
 <p>@Model.Item3</p>
 <br />
 @Html.Label("Estimated Delivery")
+<hr />
 <p>@Model.Item4</p>

@@ -2,12 +2,18 @@
 
 @{
     ViewBag.Title = "Search Catalog";
-    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
     if (Request.UrlReferrer != null)
     {
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
-    int x = 0;
+}
+@if (Session["UserID"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -34,7 +40,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.productName)
             </td>
-            <td >
+            <td>
                 @Html.DisplayFor(modelItem => item.productDescription)
             </td>
             <td>
@@ -47,10 +53,9 @@
                 <input type="number" min="0" max="@item.productQty" />
             </td>
             <td>
-                <input type="button" id="@("btn"+x)" value="Add to Cart" onclick="addItemsToCart(this)" />
+                <input type="button" value="Add to Cart" onclick="addItemsToCart(this)" />
             </td>
         </tr>
-        x++;
     }
 </table>
 <script>
@@ -60,7 +65,7 @@
         var name = $(button).parent().parent().data("name");
         var qtyPickerIndex = $(button).parent().siblings().length - 1;
         var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
-        var url = '@Url.Action("Index", "UserQuery")';
+        var url = '@Url.Action("Index", "ShoppingCart")';
         $.ajax({
             type: "POST",
             url: url,

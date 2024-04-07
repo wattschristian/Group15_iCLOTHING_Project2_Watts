@@ -16,6 +16,11 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             Session["UserID"] = null;
             Session["AdminID"] = null;
+            foreach (var item in db.ShoppingCart)
+            {
+                db.ShoppingCart.Remove(item);
+            }
+            db.SaveChanges();
             return View("Index");
         }
 

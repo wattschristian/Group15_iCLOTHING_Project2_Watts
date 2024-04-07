@@ -18,6 +18,9 @@
 <table class="table">
     <tr>
         <th>
+            User
+        </th>
+        <th>
             Date
         </th>
         <th>
@@ -29,6 +32,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.commentDate)
             </td>

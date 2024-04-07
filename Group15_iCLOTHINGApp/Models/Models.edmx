@@ -89,7 +89,7 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Key>
             <PropertyRef Name="statusID" />
           </Key>
-          <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statusID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="orderStatus" Type="varchar" MaxLength="50" />
           <Property Name="statusDate" Type="date" />
           <Property Name="adminUpdated" Type="varchar" MaxLength="50" />
@@ -117,7 +117,7 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="cartProductQty" Type="int" Nullable="false" />
           <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="productID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="statusID" Type="int" Nullable="false" />
+          <Property Name="statusID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cartProductName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserComments">
@@ -128,6 +128,7 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="commentDate" Type="date" Nullable="false" />
           <Property Name="commentDescription" Type="text" Nullable="false" />
           <Property Name="customerID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customerName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserPassword">
           <Key>
@@ -512,7 +513,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Key>
             <PropertyRef Name="statusID" />
           </Key>
-          <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statusID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="orderStatus1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="statusDate" Type="DateTime" Precision="0" />
           <Property Name="adminUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -547,7 +548,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="cartProductQty" Type="Int32" Nullable="false" />
           <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="productID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="statusID" Type="Int32" Nullable="false" />
+          <Property Name="statusID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cartProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomerInfo" Relationship="Self.Customer_s_Cart" FromRole="ShoppingCart" ToRole="CustomerInfo" />
           <NavigationProperty Name="Product" Relationship="Self.Product_In_Cart" FromRole="ShoppingCart" ToRole="Product" />
@@ -560,6 +561,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="commentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="customerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CustomerInfo" Relationship="Self.Writes" FromRole="UserComments" ToRole="CustomerInfo" />
         </EntityType>
         <EntityType Name="UserPassword">
@@ -976,6 +978,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
                 <ScalarProperty Name="commentDate" ColumnName="commentDate" />
                 <ScalarProperty Name="commentDescription" ColumnName="commentDescription" />
                 <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

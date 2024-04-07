@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9e42b27985994a7f86b4a956b198f0e7" Name="Diagram1">
+      <Diagram DiagramId="046199bc2069492084915544caf5c636" Name="Diagram1">
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Administrator" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Brand" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Brand" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Category" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.CustomerInfo" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Department" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Email" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Email" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ItemDelivery" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.OrderStatus" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.Product" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.ShoppingCart" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserComments" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserComments" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserPassword" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserQuery" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.UserQuery" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Group15_iCLOTHINGDBModel.AboutUs" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
         <AssociationConnector Association="Group15_iCLOTHINGDBModel.FK_OrderStatus_Administrator" ManuallyRouted="false" />
         <AssociationConnector Association="Group15_iCLOTHINGDBModel.Manages" ManuallyRouted="false" />

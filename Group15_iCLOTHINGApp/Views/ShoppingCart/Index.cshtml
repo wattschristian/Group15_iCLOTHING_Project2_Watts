@@ -57,11 +57,11 @@
         var name = $(button).parent().parent().data("name");
         var qtyPickerIndex = $(button).parent().siblings().length - 1;
         var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
-        var url = '@Url.Action("Index", "UserQuery")';
+        var url = '@Url.Action("Index", "ShoppingCart")';
         $.ajax({
             type: "POST",
             url: url,
-            data: { productPrice: price, productID: id, productName: name, quantity: qty },
+            data: { add_removeFlag: false, productPrice: price, productID: id, productName: name, quantity: qty },
             dataType: "json",
             cache: false
         });

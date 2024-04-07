@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -29,20 +30,22 @@ namespace Group15_iCLOTHINGApp.Controllers
 
         public ActionResult Summary(CustomerInfo customer)
         {
-            OrderStatus customerOrder = db.OrderStatus.Where(o => o.customerID == customer.customerID).First();
+            string customerID = Session["UserID"].ToString();
+            OrderStatus customerOrder = db.OrderStatus.Where(o => o.customerID.Equals(customerID)).First();
             List<ShoppingCart> cart = db.ShoppingCart.ToList();
-            CustomerInfo customerInfo = db.CustomerInfo.Where(c => c.customerID == customer.customerID).First();
+            CustomerInfo customerInfo = db.CustomerInfo.Where(c => c.customerID.Equals(customerID)).First();
             customerInfo.customerShippingAddress = customer.customerShippingAddress;
             customerInfo.customerBillingAddress = customer.customerBillingAddress;
             customerInfo.customerDOB = customer.customerDOB;
             customerInfo.customerGender = customer.customerGender;
-            db.CustomerInfo.Attach(customerInfo);
+            db.CustomerInfo.AddOrUpdate(customerInfo);
             string estimatedShipping = DateTime.Now.AddDays(7).ToString();
-            Tuple<int, List<ShoppingCart>, string, string> orderSummary = Tuple.Create(customerOrder.statusID, cart, customer.customerName, estimatedShipping);
+            Tuple<string, List<ShoppingCart>, string, string> orderSummary = Tuple.Create(customerOrder.statusID, cart, customerInfo.customerName, estimatedShipping);
             foreach(var item in db.ShoppingCart)
             {
                 db.ShoppingCart.Remove(item);
             }
+            customerOrder.orderStatus1 = "Awaiting Approval";
             db.SaveChanges();
             return View(orderSummary);
         }

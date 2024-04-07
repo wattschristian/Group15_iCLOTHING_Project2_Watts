@@ -14,7 +14,7 @@ namespace Group15_iCLOTHINGApp.Models
     
     public partial class OrderStatus
     {
-        public int statusID { get; set; }
+        public string statusID { get; set; }
         public string orderStatus1 { get; set; }
         public Nullable<System.DateTime> statusDate { get; set; }
         public string adminUpdated { get; set; }
