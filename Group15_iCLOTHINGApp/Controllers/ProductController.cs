@@ -161,7 +161,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
             return View(product);
         }
@@ -189,7 +189,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             Product product = db.Product.Find(id);
             db.Product.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MaintainCatalog", "Administrator");
         }
 
         protected override void Dispose(bool disposing)
