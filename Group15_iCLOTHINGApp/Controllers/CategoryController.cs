@@ -50,7 +50,6 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 Random rnd = new Random();
                 category.categoryID = rnd.Next(1000, 9999).ToString();
-                category.departmentID = "5679";
                 db.Category.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");

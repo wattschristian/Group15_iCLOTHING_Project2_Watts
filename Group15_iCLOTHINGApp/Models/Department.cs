@@ -17,7 +17,6 @@ namespace Group15_iCLOTHINGApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Department()
         {
-            this.Category = new HashSet<Category>();
             this.Product = new HashSet<Product>();
         }
     
@@ -25,8 +24,6 @@ namespace Group15_iCLOTHINGApp.Models
         public string departmentName { get; set; }
         public string departmentDescription { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category> Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
     }
