@@ -1,13 +1,13 @@
 ﻿@{
     ViewBag.Title = "About";
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
 }
 @if (Session["UserID"] != null)
 {
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
-else if (Session["AdminID"] != null)
-{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 else
 {
@@ -15,5 +15,11 @@ else
 }
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title</h2>
-    <h4>@ViewBag.Message</h4>
+    <hr />
+    <a href="@ViewBag.ReturnUrl">Back</a>
+    <br /><br />
+    <h4>@ViewBag.WelcomeMessage</h4>
+    <p>@ViewBag.Message</p>
+    <br />
+    <p>@ViewBag.ThankYou</p>
 </main>

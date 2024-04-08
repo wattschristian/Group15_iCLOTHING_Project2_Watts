@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.UserComments>
+@model IEnumerable<Group15_iCLOTHINGApp.Models.UserComments>
 
 @{
     ViewBag.Title = "Feedback";
@@ -14,8 +14,7 @@
     .feedback-container {
         padding: 20px;
         font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-    }
-
+        
         .feedback-container .table {
             width: 100%;
             border-collapse: collapse;
@@ -55,6 +54,47 @@
                 background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
             }
 </style>
+<h2>@ViewBag.Title</h2>
+<hr />
+<a href="@ViewBag.ReturnURL">Back</a>
+<br /><br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Feedback
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.commentNo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.commentNo })
+            </td>
+        </tr>
+    }
+
 
 <h2>@ViewBag.Title</h2>
 <br />

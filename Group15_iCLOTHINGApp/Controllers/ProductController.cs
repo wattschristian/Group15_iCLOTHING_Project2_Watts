@@ -22,7 +22,7 @@ namespace Group15_iCLOTHINGApp.Controllers
                 List<Product> products = (List<Product>)TempData["products"];
                 return View(products);
             }
-            return View();
+            return View(db.Product.ToList());
         }
 
         public ActionResult Filter(string brandID = "", string categoryID = "", string departmentID = "", string searchString = "EMPTY")

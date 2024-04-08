@@ -1,5 +1,8 @@
 ﻿using Group15_iCLOTHINGApp.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -14,6 +17,37 @@ namespace Group15_iCLOTHINGApp.Controllers
         public ActionResult Index()
         {
             return View(db.OrderStatus.ToList());
+        }
+
+        public ActionResult Checkout()
+        {
+            if(db.ShoppingCart.ToList().Count > 0)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "ShoppingCart");
+        }
+
+        public ActionResult Summary(CustomerInfo customer)
+        {
+            string customerID = Session["UserID"].ToString();
+            OrderStatus customerOrder = db.OrderStatus.Where(o => o.customerID.Equals(customerID)).First();
+            List<ShoppingCart> cart = db.ShoppingCart.ToList();
+            CustomerInfo customerInfo = db.CustomerInfo.Where(c => c.customerID.Equals(customerID)).First();
+            customerInfo.customerShippingAddress = customer.customerShippingAddress;
+            customerInfo.customerBillingAddress = customer.customerBillingAddress;
+            customerInfo.customerDOB = customer.customerDOB;
+            customerInfo.customerGender = customer.customerGender;
+            db.CustomerInfo.AddOrUpdate(customerInfo);
+            string estimatedShipping = DateTime.Now.AddDays(7).ToString();
+            Tuple<string, List<ShoppingCart>, string, string> orderSummary = Tuple.Create(customerOrder.statusID, cart, customerInfo.customerName, estimatedShipping);
+            foreach(var item in db.ShoppingCart)
+            {
+                db.ShoppingCart.Remove(item);
+            }
+            customerOrder.orderStatus1 = "Awaiting Approval";
+            db.SaveChanges();
+            return View(orderSummary);
         }
 
         // GET: OrderStatus/Details/5

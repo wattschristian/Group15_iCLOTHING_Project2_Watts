@@ -328,6 +328,8 @@
     <Content Include="Views\Administrator\MaintainCatalog.cshtml" />
     <Content Include="Views\Administrator\ManageOrders.cshtml" />
     <Content Include="Views\UserPassword\Create.cshtml" />
+    <Content Include="Views\OrderStatus\Checkout.cshtml" />
+    <Content Include="Views\OrderStatus\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -98,6 +98,8 @@
                     <li class="nav-item">
                         @Html.ActionLink("Log Out", "Logout", "Home", new { logoutflag = true }, new { @class = "nav-link" })
                     </li>
+            
+                    <li><p class="nav-link">Welcome @(Session["UserName"].ToString().ToUpper())!</p></li>
                 </ul>
             </div>
         </div>

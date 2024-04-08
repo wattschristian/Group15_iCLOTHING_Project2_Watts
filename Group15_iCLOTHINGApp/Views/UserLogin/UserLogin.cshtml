@@ -56,6 +56,7 @@
 
     <div class="login-container">
         <hr />
+    <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.Label("User Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -77,6 +78,9 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Login" class="btn btn-primary" />
                 <p>@Html.ActionLink("Register", "Create", "UserPassword", null, new { @class = "btn btn-secondary" })</p>
+                <input type="submit" id="loginButton" value="Login" onclick="checkError(this)"/>
+                <p>@Html.ActionLink("Register", "Create", "UserPassword", null, null)</p>
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
             </div>
         </div>
     </div>
@@ -86,3 +90,19 @@
 {
     <span style="color:red;">@TempData["Message"].ToString()</span>
 }
+@*<script>
+    function checkError(loginButton) {
+        debugger;
+        username = $("#userAccountName").val();
+        passwrd = $("#userEncryptedPassword").val();
+        if (username == '' && passwrd == '') {
+            @ViewBag.ErrorMessage = "Input fields required";
+        }
+        if (username == '') {
+            @ViewBag.ErrorMessage = "Username required";
+        }
+        else if (passwrd == '') {
+            @ViewBag.ErrorMessage = "Password required";
+        }
+    }
+</script>*@

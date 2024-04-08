@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-    if (Request.UrlReferrer != null)
+    decimal totalPrice = 0;
+    foreach (var item in Model)
     {
-        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+        totalPrice += item.cartProductPrice * item.cartProductQty;
     }
+    ViewBag.CartTotal = totalPrice;
 }
 
 <!DOCTYPE html>
@@ -90,3 +92,59 @@
     </table>
 </body>
 </html>
+<h2>@ViewBag.Title</h2>
+<hr />
+@Html.ActionLink("Back", "Index", "UserQuery")
+<table class="table" cellspacing="5">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr data-name="@item.cartProductName" data-price="@item.cartProductPrice" data-id="@item.productID">
+            <td>
+                @Html.DisplayFor(modelItem => item.cartProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cartProductQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cartProductPrice)
+            </td>
+            <td>
+                <input type="number" min="0" max="@item.cartProductQty" />
+            </td>
+            <td>
+                <input type="button" value="Remove" onclick="removeItemsFromCart(this)" />
+            </td>
+        </tr>
+    }
+</table>
+@using (Html.BeginForm("Checkout", "OrderStatus"))
+{
+    <div style="display: inline-block;">
+        <p>Total: $@ViewBag.CartTotal</p>
+    </div>
+    <input type="submit" value="Check Out" style="float:right" />
+}
+<script>
+    function removeItemsFromCart(button) {
+        var id = $(button).parent().parent().data("id");
+        var price = $(button).parent().parent().data("price");
+        var name = $(button).parent().parent().data("name");
+        var qtyPickerIndex = $(button).parent().siblings().length - 1;
+        var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
+        var url = '@Url.Action("Index", "ShoppingCart")';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { add_removeFlag: false, productPrice: price, productID: id, productName: name, quantity: qty },
+            dataType: "json",
+            cache: false
+        });
+    }
+</script>

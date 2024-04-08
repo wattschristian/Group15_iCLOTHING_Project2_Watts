@@ -11,23 +11,43 @@ public class UserLoginController : Controller
 
     [AllowAnonymous]
     [HttpGet]
-    public ActionResult UserLogin()
+    // Shows error message right when page loads 
+    public ActionResult UserLogin(UserPassword up, string eMessage="")
     {
+        ViewBag.ErrorMessage = eMessage;
         return View();
     }
 
-    [HttpPost]
     public ActionResult Validate(UserPassword up)
     {
         List<UserPassword> users = db.UserPassword.ToList();
+        string eMessage;
+        if (up.userAccountName == null && up.userEncryptedPassword == null)
+        {
+            eMessage = "Input fields required";
+            return RedirectToAction("UserLogin", "UserLogin", new { eMessage = eMessage });
+        }
+        else if (up.userAccountName == null)
+        {
+            eMessage = "Username required";
+            return RedirectToAction("UserLogin", "UserLogin", new { eMessage = eMessage });
+        }
+        else if (up.userEncryptedPassword == null)
+        {
+            eMessage = "Password required";
+            return RedirectToAction("UserLogin", "UserLogin", new { eMessage = eMessage });
+        }
         foreach (UserPassword user in users)
         {
             if (user.userAccountName == up.userAccountName && user.userEncryptedPassword == up.userEncryptedPassword)
             {
                 Session.Add("UserID", user.userID);
-                return RedirectToAction("Index", "Home");
+                Session.Add("UserName", user.userAccountName);
+                eMessage = "";
+                return RedirectToAction("Index", "Home", new { eMessage = eMessage });
             }
         }
-        return RedirectToAction("Create", "UserPassword");
+        eMessage = "User not found, please register account";
+        return RedirectToAction("UserLogin", "UserLogin", new { eMessage = eMessage });
     }
 }
