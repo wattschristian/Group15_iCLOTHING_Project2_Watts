@@ -15,14 +15,97 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
+<style>
+    /* Style for the body */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Style for the row */
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    /* Style for the columns */
+    .col-sm-4 {
+        flex-basis: calc(33.33% - 20px); /* Adjusted width */
+        margin-right: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex; /* Added to align content vertically */
+        flex-direction: column; /* Added to align content vertically */
+    }
+
+        .col-sm-4:last-child {
+            margin-right: 0; /* Remove margin for the last column */
+        }
+
+        .col-sm-4:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for the images */
+        .col-sm-4 img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+            max-height: 150px; /* Reduced image height */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        /* Style for the content inside each box */
+        .col-sm-4 .content {
+            padding: 20px;
+            margin-top: auto; /* Align content at the bottom */
+        }
+
+        .col-sm-4 h3 {
+            margin: 0;
+            font-size: 20px; /* Increased font size */
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold; /* Added font weight */
+        }
+
+        .col-sm-4 p {
+            font-size: 16px; /* Increased font size */
+            line-height: 1.6; /* Increased line height for better readability */
+            color: #666;
+            text-align: center;
+            margin-bottom: 0; /* Remove default margin */
+        }
+
+        /* Style for the links */
+        .col-sm-4 a {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+            .col-sm-4 a:hover {
+                color: #0056b3;
+            }
+
+</style>
+<html>
 <head>
-    <link rel="stylesheet" href="../../Stylesheets/StyleSheet1.css">
+    <title>@ViewBag.Title</title>
 </head>
 
-
 <body>
-
-
     <div class="row">
         <div class="col-sm-4">
             <img src="~/Content/Images/brands.png" alt="..." />
@@ -44,29 +127,28 @@ else
             <h3><a href="~/Home/About">About</a></h3>
         </div>
         <div class="col-sm-4">
-            <img src="~/Content/Images/contact.png" alt="..." />          
+            <img src="~/Content/Images/contact.png" alt="..." />
             <h3><a href="~/Home/Contact">Contact Us</a></h3>
         </div>
         <div class="col-sm-4">
-            <img src="~/Content/Images/feedback.png" alt="..." />        
+            <img src="~/Content/Images/feedback.png" alt="..." />
             <h3><a href="~/UserComments/Index">Feedback</a></h3>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-4">
-             <img src="~/Content/Images/search.png" alt="..." />
-             <h3><a href="~/UserQuery/Index">Search</a></h3>
+            <img src="~/Content/Images/search.png" alt="..." />
+            <h3><a href="~/UserQuery/Index">Search</a></h3>
         </div>
         <div class="col-sm-4">
-             <img src="~/Content/Images/shoppingcart.png" alt="..." />
-             <h3><a href="~/ShoppingCart/Index">Cart</a></h3>
+            <img src="~/Content/Images/shoppingcart.png" alt="..." />
+            <h3><a href="~/ShoppingCart/Index">Cart</a></h3>
         </div>
         <div class="col-sm-4">
             <img src="~/Content/Images/login.png" alt="..." />
             <h3><a href="~/UserLogin/UserLogin">Log In/Register</a></h3>
         </div>
     </div>
-        
 </body>
-
+</html>

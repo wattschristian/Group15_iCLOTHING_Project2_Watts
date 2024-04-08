@@ -9,38 +9,86 @@
     }
 }
 
-<h2>@ViewBag.Title</h2>
-<a href="@ViewBag.ReturnURL">Back</a>
-<br /><br />
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Date
-        </th>
-        <th>
-            Feedback
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.commentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.commentDescription)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }) |
-                @Html.ActionLink("Details", "Details", new { id = item.commentNo }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.commentNo })
-            </td>
-        </tr>
+<style>
+    /* Inline CSS for feedback page */
+    .feedback-container {
+        padding: 20px;
+        font-family: Arial, sans-serif; /* Match the font-family of the navbar */
     }
 
-</table>
+        .feedback-container .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+
+            .feedback-container .table th {
+                background: border-box;
+                background-color: rgb(0, 136, 180);
+                color: #fff;
+                font-weight: bold;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .feedback-container .table td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .feedback-container .table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+        .feedback-container a {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Add smooth transition */
+        }
+
+            .feedback-container a:hover {
+                background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+            }
+</style>
+
+<h2>@ViewBag.Title</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<div class="feedback-container">
+    <table class="table">
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Feedback
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.commentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.commentDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.commentNo }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.commentNo }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

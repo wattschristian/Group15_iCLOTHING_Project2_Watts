@@ -16,9 +16,10 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    <link rel="stylesheet", href="../../Stylesheets/SearchStyleSheet.css">
+</head>
 <h2>@ViewBag.Title</h2>
-<a href="@ViewBag.ReturnURL">Back</a>
 @using (Html.BeginForm("Filter", "Product"))
 {
     <p>

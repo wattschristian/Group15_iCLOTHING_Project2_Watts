@@ -16,35 +16,88 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
+<html>
 <head>
-    <link rel="stylesheet" href="../../Stylesheets/DepartmentStyleSheet.css" />
-</head>
-<h2>@ViewBag.Title</h2>
-<div class="department-container">
-    <table class="table" cellspacing="5">
-        <tr>
-            <th>
-                Department
-            </th>
-            <th>
-                Description
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.departmentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.departmentDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("View", "Filter", "Product", new { departmentID = item.departmentID }, new { @class = "nav-link" })
-                </td>
-            </tr>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - iCLOTHING Web Store</title>
+    <style>
+        /* Inline CSS for department page */
+        .department-container {
+            padding: 20px;
+            font-family: Arial, sans-serif; /* Match the font-family of the navbar */
         }
 
-    </table>
-</div>
+            .department-container .table {
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 0;
+                margin-top: 20px;
+            }
+
+                .department-container .table th {
+                    background: border-box;
+                    background-color: rgb(0, 136, 180);
+                    color: #fff;
+                    font-weight: bold;
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                .department-container .table td {
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .department-container .table tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+
+            .department-container a {
+                display: inline-block;
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease; /* Add smooth transition */
+            }
+
+                .department-container a:hover {
+                    background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+                }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.Title</h2>
+    <div class="department-container">
+        <table class="table" cellspacing="5">
+            <tr>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departmentDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "Filter", "Product", new { departmentID = item.departmentID }, new { @class = "nav-link" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
