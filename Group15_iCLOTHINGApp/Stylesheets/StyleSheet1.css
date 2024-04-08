@@ -15,7 +15,7 @@ body {
 
 /* Style for the columns */
 .col-sm-4 {
-    flex-basis: calc(33.33% - 20px);
+    flex-basis: calc(33.33% - 20px); /* Adjusted width */
     margin-right: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -23,7 +23,13 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex; /* Added to align content vertically */
+    flex-direction: column; /* Added to align content vertically */
 }
+
+    .col-sm-4:last-child {
+        margin-right: 0; /* Remove margin for the last column */
+    }
 
     .col-sm-4:hover {
         transform: translateY(-5px);
@@ -35,27 +41,30 @@ body {
         width: 100%;
         height: auto;
         border-radius: 8px 8px 0 0;
+        max-height: 150px; /* Reduced image height */
+        object-fit: cover; /* Maintain aspect ratio */
     }
 
     /* Style for the content inside each box */
     .col-sm-4 .content {
         padding: 20px;
-        vertical-align: bottom;
+        margin-top: auto; /* Align content at the bottom */
     }
 
     .col-sm-4 h3 {
         margin: 0;
-        font-size: 22px;
+        font-size: 18px; /* Reduced font size */
         color: #333;
         text-align: center;
         margin-bottom: 10px;
     }
 
     .col-sm-4 p {
-        font-size: 16px;
+        font-size: 14px; /* Reduced font size */
         line-height: 1.5;
         color: #666;
         text-align: center;
+        margin-bottom: 0; /* Remove default margin */
     }
 
     /* Style for the links */

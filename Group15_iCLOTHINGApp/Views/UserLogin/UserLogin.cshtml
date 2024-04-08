@@ -3,6 +3,59 @@
 @using (Html.BeginForm("Validate", "UserLogin"))
 {
     @Html.AntiForgeryToken()
+    <style>
+        /* Inline CSS for user login page */
+        .login-container {
+            padding: 20px;
+            font-family: Arial, sans-serif; /* Match the font-family of the navbar */
+        }
+
+            .login-container .form-group {
+                margin-bottom: 15px;
+            }
+
+            .login-container .control-label {
+                font-weight: bold;
+            }
+
+            .login-container .form-control {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .login-container .btn {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-bottom: 5px;
+            }
+
+            .login-container .btn-primary {
+                background-color: rgb(0, 136, 180);
+                color: #fff;
+            }
+
+                .login-container .btn-primary:hover {
+                    background-color: #005b7f;
+                }
+
+            .login-container .btn-secondary {
+                background-color: #6c757d;
+                color: #fff;
+            }
+
+                .login-container .btn-secondary:hover {
+                    background-color: #5a6268;
+                }
+    </style>
+
+    <div class="login-container">
+        <hr />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -16,19 +69,26 @@
         <div class="form-group">
             @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.userEncryptedPassword, new { htmlAttributes = new { @class="form-control", @type="password" } })
+                @Html.EditorFor(model => model.userEncryptedPassword, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
                 @Html.ValidationMessageFor(model => model.userEncryptedPassword, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <br />
             <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                <p>@Html.ActionLink("Register", "Create", "UserPassword", null, new { @class = "btn btn-secondary" })</p>
                 <input type="submit" id="loginButton" value="Login" onclick="checkError(this)"/>
                 <p>@Html.ActionLink("Register", "Create", "UserPassword", null, null)</p>
                 <p class="text-danger">@ViewBag.ErrorMessage</p>
             </div>
         </div>
     </div>
+}
+
+@if (TempData["Message"] != null)
+{
+    <span style="color:red;">@TempData["Message"].ToString()</span>
 }
 @*<script>
     function checkError(loginButton) {

@@ -1,23 +1,75 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - iCLOTHING Web Store</title>
-    <link rel="stylesheet" href="../../Stylesheets/NavBarStyleSheet.css">
+    <style>
+        /* Inline CSS for navigation bar */
+        .navbar {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-item {
+            margin-right: 15px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 5px;
+            }
+
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 10px 15px;
+        }
+
+            .navbar-toggler:focus {
+                outline: none;
+            }
+    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar">
         <div class="container">
             @Html.ActionLink("iCLOTHING", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
                     <li>@Html.ActionLink("Maintain Catalog", "MaintainCatalog", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Manage Orders", "ManageOrders", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Home", new { logoutflag=true }, new { @class = "nav-link" })</li>

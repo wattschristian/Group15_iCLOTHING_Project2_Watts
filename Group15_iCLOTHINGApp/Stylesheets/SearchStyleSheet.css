@@ -1,0 +1,68 @@
+﻿
+
+/* Style for the search page title */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+/* Style for the search form */
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="submit"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+/* Style for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    /* Style for table headers */
+    .table th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* Style for table cells */
+    .table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Style for table rows */
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+/* Style for the "Add to Cart" button */
+.action-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .action-link:hover {
+        text-decoration: underline;
+    }
