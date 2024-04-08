@@ -97,6 +97,79 @@ else
             .col-sm-4 a:hover {
                 color: #0056b3;
             }
+    /* Style for the welcome banner */
+    .welcome-banner {
+        background-image: url(../../Content/Images/images.jpg);
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+        .welcome-banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-banner p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-banner .btn {
+            font-size: 18px;
+            padding: 12px 24px;
+            border-radius: 25px;
+        }
+
+    /* Style for the home page content */
+    .home-content {
+        background-color: #f9f9f9;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+        .home-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .home-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+    /* Style for the link cards */
+    .link-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-card img {
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .link-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            font-size: 18px;
+            color: #666;
+        }
+
 
 </style>
 <html>
@@ -105,6 +178,22 @@ else
 </head>
 
 <body>
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <div class="container">
+            <h1>Welcome to Our E-Commerce Store!</h1>
+            <p>Discover the latest trends and shop for your favorite brands.</p>
+            <a href="#explore" class="btn btn-primary">Explore Now</a>
+        </div>
+    </div>
+
+    <!-- Home Page Content -->
+    <div id="explore" class="home-content">
+        <div class="container">
+            <h2>Explore Our Categories</h2>
+            <p>Check out our wide range of products across different categories.</p>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-4">
             <img src="~/Content/Images/brands.png" alt="..." />
