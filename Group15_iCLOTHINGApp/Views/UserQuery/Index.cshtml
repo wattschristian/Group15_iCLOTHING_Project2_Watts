@@ -65,7 +65,14 @@
                 @Html.DisplayFor(modelItem => item.productPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.productQty)
+                 @if (item.productQty > 0)
+                {
+                    @Html.DisplayFor(modelItem => item.productQty)
+                }
+                else
+                {
+                    <p>Out of Stock</p>
+                }
             </td>
             <td>
                 <input type="number" min="0" max="@item.productQty" />

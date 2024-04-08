@@ -27,9 +27,26 @@ namespace Group15_iCLOTHINGApp.Controllers
         }
 
         public ActionResult ManageOrders()
-        { 
-            return View(); 
-        }  
+        {
+            // Retrieve all orders
+            List<OrderStatus> allOrders = db.OrderStatus.ToList();
+
+            // Pass the list of orders to the view
+            return View(allOrders);
+        }
+
+        public ActionResult ApproveOrder(string statusID)
+        {
+            // Retrieve the order status from the database
+            OrderStatus order = db.OrderStatus.FirstOrDefault(o => o.statusID == statusID);
+            if (order != null)
+            {
+                // Update the order status to "shipped"
+                order.orderStatus1 = "Shipped";
+                db.SaveChanges();
+            }
+            return RedirectToAction("ManageOrders");
+        }
 
         protected override void Dispose(bool disposing)
         {
