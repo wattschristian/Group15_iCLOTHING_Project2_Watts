@@ -21,45 +21,48 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 return RedirectToAction("UserLogin", "UserLogin");
             }
-            if (!productPrice.Equals("") && !productID.Equals("") && !productName.Equals("") && quantity != 0)
+            else
             {
-                if (Session["UserID"] == null)
-                    return RedirectToAction("UserLogin", "UserLogin");
-                Random rnd = new Random();
-                string userID = Session["UserID"].ToString();
-                List<OrderStatus> orders = db.OrderStatus.Where(o => o.customerID.Equals(userID)).ToList();
-                OrderStatus order = null;
-                if (orders.Count == 0)
+                if (!productPrice.Equals("") && !productID.Equals("") && !productName.Equals("") && quantity != 0)
                 {
-                    order = new OrderStatus();
-                    order.statusID = rnd.Next(1000, 9999).ToString();
-                    order.orderStatus1 = "inProgress";
-                    order.statusDate = DateTime.Now;
-                    order.customerID = Session["UserID"].ToString();
-                    db.OrderStatus.Add(order);
+                    if (Session["UserID"] == null)
+                        return RedirectToAction("UserLogin", "UserLogin");
+                    Random rnd = new Random();
+                    string userID = Session["UserID"].ToString();
+                    List<OrderStatus> orders = db.OrderStatus.Where(o => o.customerID.Equals(userID)).ToList();
+                    OrderStatus order = null;
+                    if (orders.Count == 0)
+                    {
+                        order = new OrderStatus();
+                        order.statusID = rnd.Next(1000, 9999).ToString();
+                        order.orderStatus1 = "inProgress";
+                        order.statusDate = DateTime.Now;
+                        order.customerID = Session["UserID"].ToString();
+                        db.OrderStatus.Add(order);
+                    }
+                    else
+                    {
+                        order = orders.ElementAt(0);
+                    }
+                    Product product = new Product();
+                    product.productPrice = decimal.Parse(productPrice);
+                    product.productID = productID;
+                    product.productName = productName;
+                    product.productQty = quantity;
+                    if (add_removeFlag)
+                        success = AddItemToCart(product, order);
+                    else if (!add_removeFlag)
+                        success = RemoveItemFromCart(product);
+                    db.SaveChanges();
                 }
-                else
+                if (success && add_removeFlag)
                 {
-                    order = orders.ElementAt(0);
+                    return RedirectToAction("Index", "UserQuery");
                 }
-                Product product = new Product();
-                product.productPrice = decimal.Parse(productPrice);
-                product.productID = productID;
-                product.productName = productName;
-                product.productQty = quantity;
-                if (add_removeFlag)
-                    success = AddItemToCart(product, order);
-                else if (!add_removeFlag)
-                    success = RemoveItemFromCart(product);
-                db.SaveChanges();
-            }
-            if (success && add_removeFlag)
-            {
-                return RedirectToAction("Index", "UserQuery");
-            }
-            else if (success && !add_removeFlag)
-            {
-                return RedirectToAction("Index", "ShoppingCart");
+                else if (success && !add_removeFlag)
+                {
+                    return RedirectToAction("Index", "ShoppingCart");
+                }
             }
             return View(db.ShoppingCart.ToList());
         }

@@ -72,8 +72,9 @@
                 <ul class="navbar-nav">
                     <li>@Html.ActionLink("Maintain Catalog", "MaintainCatalog", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Manage Orders", "ManageOrders", "Administrator", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Home", new { logoutflag = true }, new { @class = "nav-link" })</li>
-                </ul>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home", new { logoutflag=true }, new { @class = "nav-link" })</li>
+                    <li><p class="nav-link">Welcome ADMIN!</p></li>
+                  </ul>
             </div>
         </div>
     </nav>

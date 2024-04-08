@@ -43,7 +43,6 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
           <Property Name="categoryID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="categoryName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="categoryDescription" Type="text" />
-          <Property Name="departmentID" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerInfo">
           <Key>
@@ -194,18 +193,6 @@ warning 6002: The table/view 'Group15_iCLOTHINGDB.dbo.AboutUs' does not have a p
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="categoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Exists in Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
-          <End Role="Category" Type="Self.Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="Category">
-              <PropertyRef Name="departmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -375,10 +362,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="Exists in Department" Association="Self.Exists in Department">
-            <End Role="Department" EntitySet="Department" />
-            <End Role="Category" EntitySet="Category" />
-          </AssociationSet>
           <AssociationSet Name="Exists in Department (Product)" Association="Self.Exists in Department (Product)">
             <End Role="Department" EntitySet="Department" />
             <End Role="Product" EntitySet="Product" />
@@ -453,9 +436,7 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="departmentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.Exists_in_Category" FromRole="Category" ToRole="Product" />
-          <NavigationProperty Name="Department" Relationship="Self.Exists_in_Department" FromRole="Category" ToRole="Department" />
         </EntityType>
         <EntityType Name="CustomerInfo">
           <Key>
@@ -483,7 +464,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="departmentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="departmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="departmentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Category" Relationship="Self.Exists_in_Department" FromRole="Department" ToRole="Category" />
           <NavigationProperty Name="Product" Relationship="Self.Exists_in_Department__Product_" FromRole="Department" ToRole="Product" />
         </EntityType>
         <EntityType Name="Email">
@@ -645,18 +625,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Exists_in_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
-          <End Role="Category" Type="Self.Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentID" />
-            </Principal>
-            <Dependent Role="Category">
-              <PropertyRef Name="departmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Authenticated_By">
           <End Role="UserPassword" Type="Self.UserPassword" Multiplicity="1" />
           <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="0..1" />
@@ -808,10 +776,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="Exists_in_Department" Association="Self.Exists_in_Department">
-            <End Role="Department" EntitySet="Department" />
-            <End Role="Category" EntitySet="Category" />
-          </AssociationSet>
           <AssociationSet Name="Authenticated_By" Association="Self.Authenticated_By">
             <End Role="UserPassword" EntitySet="UserPassword" />
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
@@ -885,7 +849,6 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
                 <ScalarProperty Name="categoryID" ColumnName="categoryID" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
                 <ScalarProperty Name="categoryDescription" ColumnName="categoryDescription" />
-                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

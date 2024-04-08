@@ -50,7 +50,6 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 Random rnd = new Random();
                 category.categoryID = rnd.Next(1000, 9999).ToString();
-                category.departmentID = "5679";
                 db.Category.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");
@@ -85,7 +84,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
             return View(category);
         }
@@ -113,7 +112,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             Category category = db.Category.Find(id);
             db.Category.Remove(category);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MaintainCatalog", "Administrator");
         }
 
         protected override void Dispose(bool disposing)
