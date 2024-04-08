@@ -86,7 +86,7 @@ namespace Group15_iCLOTHINGApp.Controllers
                 brand2.brandDescription = brand.brandDescription;
                 db.Entry(brand2).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MaintainCatalog", "Administrator");
             }
             return View(brand);
         }
