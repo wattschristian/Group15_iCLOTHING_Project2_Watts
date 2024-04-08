@@ -33,6 +33,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             string customerID = Session["UserID"].ToString();
             OrderStatus customerOrder = db.OrderStatus.Where(o => o.customerID.Equals(customerID)).First();
             List<ShoppingCart> cart = db.ShoppingCart.ToList();
+            List<Product> products = db.Product.ToList();
             CustomerInfo customerInfo = db.CustomerInfo.Where(c => c.customerID.Equals(customerID)).First();
             customerInfo.customerShippingAddress = customer.customerShippingAddress;
             customerInfo.customerBillingAddress = customer.customerBillingAddress;
@@ -41,9 +42,16 @@ namespace Group15_iCLOTHINGApp.Controllers
             db.CustomerInfo.AddOrUpdate(customerInfo);
             string estimatedShipping = DateTime.Now.AddDays(7).ToString();
             Tuple<string, List<ShoppingCart>, string, string> orderSummary = Tuple.Create(customerOrder.statusID, cart, customerInfo.customerName, estimatedShipping);
-            foreach(var item in db.ShoppingCart)
+            foreach(var cartItem in db.ShoppingCart)
             {
-                db.ShoppingCart.Remove(item);
+                foreach(var product in products)
+                {
+                    if(cartItem.productID.Equals(product.productID))
+                    {
+                        product.productQty -= cartItem.cartProductQty;
+                    }
+                }
+                db.ShoppingCart.Remove(cartItem);
             }
             customerOrder.orderStatus1 = "Awaiting Approval";
             db.SaveChanges();

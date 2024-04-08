@@ -1,5 +1,6 @@
 ﻿using Group15_iCLOTHINGApp.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,8 +13,9 @@ namespace Group15_iCLOTHINGApp.Controllers
         private Group15_iCLOTHINGDBEntities db = new Group15_iCLOTHINGDBEntities();
 
         // GET: UserPassword/Create
-        public ActionResult Create()
+        public ActionResult Create(string eMessage="")
         {
+            ViewBag.ErrorMessage = eMessage;
             return View();
         }
 
@@ -27,9 +29,17 @@ namespace Group15_iCLOTHINGApp.Controllers
             if (ModelState.IsValid)
             {
                 Random rnd = new Random();
+                List<UserPassword> users = db.UserPassword.ToList();
                 userPassword.userID = rnd.Next(1000, 9999).ToString();
                 userPassword.passwordExpiryTime = 0;
                 userPassword.userAccountExpiryDate = DateTime.Now.AddYears(1);
+                foreach(var user in users)
+                {
+                    if(user.userAccountName == userPassword.userAccountName)
+                    {
+                        return RedirectToAction("Create", new { eMessage = "User exists, please login or create new account" });
+                    }
+                }
                 db.UserPassword.Add(userPassword);
                 CustomerInfo customer = new CustomerInfo();
                 customer.customerID = userPassword.userID;

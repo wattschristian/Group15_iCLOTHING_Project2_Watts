@@ -82,7 +82,10 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                Category category2 = db.Category.Find(category.categoryID);
+                category2.categoryName = category.categoryName;
+                category2.categoryDescription = category.categoryDescription;
+                db.Entry(category2).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");
             }

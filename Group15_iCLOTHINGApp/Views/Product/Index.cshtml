@@ -1,9 +1,8 @@
-﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.Product>
+﻿@using Group15_iCLOTHINGApp.Models;
+@model List<Product>
 
 @{
     ViewBag.Title = "Catalog";
-}
-@{
     if (Session["UserID"] != null)
     {
         Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
@@ -16,7 +15,21 @@
     {
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
-} 
+    List<Product> catalog = Model;
+    if (catalog != null && ViewBag.Cart.Count > 0)
+    {
+        foreach (var catalogItem in catalog)
+        {
+            foreach (var cartItem in ViewBag.Cart)
+            {
+                if (catalogItem.productID.Equals(cartItem.productID))
+                {
+                    catalogItem.productQty -= cartItem.cartProductQty;
+                }
+            }
+        }
+    }
+}
 
 <h2>@ViewBag.Title</h2>
 <hr />
@@ -29,7 +42,7 @@
         <th>In Stock</th>
         <th></th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in catalog)
     {
         <tr data-name="@item.productName" data-price="@item.productPrice" data-id="@item.productID">
             <td>

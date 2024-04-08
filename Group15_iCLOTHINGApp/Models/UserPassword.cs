@@ -21,5 +21,7 @@ namespace Group15_iCLOTHINGApp.Models
         public Nullable<System.DateTime> userAccountExpiryDate { get; set; }
     
         public virtual CustomerInfo CustomerInfo { get; set; }
+        public virtual UserPassword UserPassword1 { get; set; }
+        public virtual UserPassword UserPassword2 { get; set; }
     }
 }

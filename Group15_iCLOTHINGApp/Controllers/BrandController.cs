@@ -81,7 +81,10 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(brand).State = EntityState.Modified;
+                Brand brand2 = db.Brand.Find(brand.brandID);
+                brand2.brandName = brand.brandName;
+                brand2.brandDescription = brand.brandDescription;
+                db.Entry(brand2).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

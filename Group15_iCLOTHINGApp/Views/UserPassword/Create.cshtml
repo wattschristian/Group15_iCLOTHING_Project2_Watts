@@ -30,6 +30,9 @@
             <br />
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" />
+                <br />
+                @Html.ActionLink("Back to Login", "UserLogin", "UserLogin")
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
             </div>
         </div>
     </div>

@@ -27,17 +27,12 @@ namespace Group15_iCLOTHINGApp.Controllers
                 {
                     if (Session["UserID"] == null)
                         return RedirectToAction("UserLogin", "UserLogin");
-                    Random rnd = new Random();
                     string userID = Session["UserID"].ToString();
                     List<OrderStatus> orders = db.OrderStatus.Where(o => o.customerID.Equals(userID)).ToList();
                     OrderStatus order = null;
                     if (orders.Count == 0)
                     {
-                        order = new OrderStatus();
-                        order.statusID = rnd.Next(1000, 9999).ToString();
-                        order.orderStatus1 = "inProgress";
-                        order.statusDate = DateTime.Now;
-                        order.customerID = Session["UserID"].ToString();
+                        order = createNewOrder();
                         db.OrderStatus.Add(order);
                     }
                     else
@@ -61,6 +56,17 @@ namespace Group15_iCLOTHINGApp.Controllers
                 }
             }
             return View(db.ShoppingCart.ToList());
+        }
+
+        public OrderStatus createNewOrder()
+        {
+            Random rnd = new Random();
+            OrderStatus order = new OrderStatus();
+            order.statusID = rnd.Next(1000, 9999).ToString();
+            order.orderStatus1 = "inProgress";
+            order.statusDate = DateTime.Now;
+            order.customerID = Session["UserID"].ToString();
+            return order;
         }
 
         public bool AddItemToCart(Product product, OrderStatus order)

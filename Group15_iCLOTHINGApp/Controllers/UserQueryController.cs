@@ -15,6 +15,7 @@ namespace Group15_iCLOTHINGApp.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Cart = db.ShoppingCart.ToList();
             if (Session["products"] != null)
             {
                 List<Product> products = (List<Product>)Session["products"];
