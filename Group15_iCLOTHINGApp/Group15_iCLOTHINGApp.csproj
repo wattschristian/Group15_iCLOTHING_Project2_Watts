@@ -263,7 +263,6 @@
     <Content Include="Stylesheets\AdminManageStyleSheet.css" />
     <Content Include="Stylesheets\DepartmentStyleSheet.css" />
     <Content Include="Stylesheets\NavBarStyleSheet.css" />
-    <Content Include="Stylesheets\SearchStyleSheet.css" />
     <Content Include="Stylesheets\StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

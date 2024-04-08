@@ -1,16 +1,61 @@
 ﻿@model Group15_iCLOTHINGApp.Models.Administrator
 
+<style>
+    /* Styling */
+    form {
+        padding: 20px;
+        font-family: Arial, sans-serif; /* Match the font-family of the navbar */
+    }
+
+    span {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 5px;
+        background-color: rgb(0, 136, 180);
+        color: #fff;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #005b7f;
+        }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
 @using (Html.BeginForm("Validate", "AdminLogin"))
 {
-    <span>Admin Name</span>
-    @Html.EditorFor(model => model.adminName)
-    @Html.ValidationMessageFor(model => model.adminName, "", new { @class = "text-danger" })
-    <br />
-    <span>Password</span>
-    @Html.EditorFor(model => model.adminEncryptedPassword, new { htmlAttributes = new { type = "password" } })
-    @Html.ValidationMessageFor(model => model.adminEncryptedPassword, "", new { @class = "text-danger" })
-    <br />
-    <input type="submit" value="Login" />
+    <div>
+        <span>Admin Name</span><br />
+        @Html.EditorFor(model => model.adminName)
+        @Html.ValidationMessageFor(model => model.adminName, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        <span>Password</span><br />
+        @Html.EditorFor(model => model.adminEncryptedPassword, new { htmlAttributes = new { type = "password" } })
+        @Html.ValidationMessageFor(model => model.adminEncryptedPassword, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        <input type="submit" value="Login" />
+    </div>
 }
 
 @if (TempData["Message"] != null)
