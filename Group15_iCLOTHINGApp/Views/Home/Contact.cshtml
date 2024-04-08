@@ -1,9 +1,5 @@
 ﻿@{
     ViewBag.Title = "Contact";
-    if (Request.UrlReferrer != null)
-    {
-        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
-    }
 }
 @if (Session["UserID"] != null)
 {
@@ -15,9 +11,7 @@ else
 }
 <main aria-labelledby="title">
     <h2 id="title">@ViewBag.Title</h2>
-    <hr />
-    <a href="@ViewBag.ReturnUrl">Back</a>
-    <br /><br />
+    <hr /><br />
     <h4>@ViewBag.Message</h4>
 
     <address>
