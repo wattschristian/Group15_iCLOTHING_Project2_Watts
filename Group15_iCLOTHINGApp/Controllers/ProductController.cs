@@ -17,9 +17,11 @@ namespace Group15_iCLOTHINGApp.Controllers
         // GET: Product
         public ActionResult Index()
         {
+            ViewBag.Cart = db.ShoppingCart.ToList();
             if (TempData["products"] != null)
             {
                 List<Product> products = (List<Product>)TempData["products"];
+                TempData["products"] = null;
                 return View(products);
             }
             return View(db.Product.ToList());
@@ -159,7 +161,12 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                Product product2 = db.Product.Find(product.productID);
+                product2.productName = product.productName;
+                product2.productDescription = product.productDescription;
+                product2.productPrice = product.productPrice;
+                product2.productQty = product.productQty;
+                db.Entry(product2).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("MaintainCatalog", "Administrator");
             }

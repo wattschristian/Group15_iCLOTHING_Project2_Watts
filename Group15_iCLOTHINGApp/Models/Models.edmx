@@ -235,6 +235,18 @@ warning 6035: The relationship 'FK_Email_Administrator' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserPassword_UserPassword">
+          <End Role="UserPassword" Type="Self.UserPassword" Multiplicity="1" />
+          <End Role="UserPassword1" Type="Self.UserPassword" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserPassword">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="UserPassword1">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserQuery_CustomerInfo">
           <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="1" />
           <End Role="UserQuery" Type="Self.UserQuery" Multiplicity="*" />
@@ -247,9 +259,6 @@ warning 6035: The relationship 'FK_Email_Administrator' has columns that are not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'Has Password' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="Has Password" />-->
         <Association Name="Has Product ID">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ItemDelivery" Type="Self.ItemDelivery" Multiplicity="*" />
@@ -373,6 +382,10 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <AssociationSet Name="FK_OrderStatus_Administrator" Association="Self.FK_OrderStatus_Administrator">
             <End Role="Administrator" EntitySet="Administrator" />
             <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPassword_UserPassword" Association="Self.FK_UserPassword_UserPassword">
+            <End Role="UserPassword" EntitySet="UserPassword" />
+            <End Role="UserPassword1" EntitySet="UserPassword" />
           </AssociationSet>
           <AssociationSet Name="FK_UserQuery_CustomerInfo" Association="Self.FK_UserQuery_CustomerInfo">
             <End Role="CustomerInfo" EntitySet="CustomerInfo" />
@@ -554,6 +567,8 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <Property Name="passwordExpiryTime" Type="Int32" />
           <Property Name="userAccountExpiryDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="CustomerInfo" Relationship="Self.Authenticated_By" FromRole="UserPassword" ToRole="CustomerInfo" />
+          <NavigationProperty Name="UserPassword1" Relationship="Self.FK_UserPassword_UserPassword" FromRole="UserPassword" ToRole="UserPassword1" />
+          <NavigationProperty Name="UserPassword2" Relationship="Self.FK_UserPassword_UserPassword" FromRole="UserPassword1" ToRole="UserPassword" />
         </EntityType>
         <EntityType Name="UserQuery">
           <Key>
@@ -745,6 +760,18 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserPassword_UserPassword">
+          <End Role="UserPassword" Type="Self.UserPassword" Multiplicity="1" />
+          <End Role="UserPassword1" Type="Self.UserPassword" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserPassword">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="UserPassword1">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Group15_iCLOTHINGDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" />
           <EntitySet Name="Brand" EntityType="Self.Brand" />
@@ -815,6 +842,10 @@ warning 6035: The relationship 'Has Password' has columns that are not part of t
           <AssociationSet Name="Product_In_Cart" Association="Self.Product_In_Cart">
             <End Role="Product" EntitySet="Product" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPassword_UserPassword" Association="Self.FK_UserPassword_UserPassword">
+            <End Role="UserPassword" EntitySet="UserPassword" />
+            <End Role="UserPassword1" EntitySet="UserPassword" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

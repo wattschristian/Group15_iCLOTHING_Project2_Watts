@@ -6,73 +6,73 @@
     {
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
+    if (Session["UserID"] != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<style>
+/* Inline CSS for category page */
+.category-container {
+padding: 20px;
+font-family: Arial, sans-serif; /* Match the font-family of the navbar */
 }
 
-@if (Session["UserID"] != null)
-{
-    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
-}
-else
-{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+.category-container .table {
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+margin-top: 20px;
 }
 
+.category-container .table th {
+background: border-box;
+background-color: rgb(0, 136, 180);
+color: #fff;
+font-weight: bold;
+padding: 10px;
+text-align: left;
+}
+
+.category-container .table td {
+padding: 10px;
+border-bottom: 1px solid #ddd;
+}
+
+.category-container .table tr:nth-child(even) {
+background-color: #f9f9f9;
+}
+
+.category-container a {
+display: inline-block;
+margin-bottom: 10px;
+padding: 5px 10px;
+background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
+color: #fff;
+text-decoration: none;
+border-radius: 5px;
+transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.category-container a:hover {
+background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+}
+</style>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - iCLOTHING Web Store</title>
-    <style>
-        /* Inline CSS for category page */
-        .category-container {
-            padding: 20px;
-            font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-        }
-
-            .category-container .table {
-                width: 100%;
-                border-collapse: collapse;
-                border-spacing: 0;
-                margin-top: 20px;
-            }
-
-                .category-container .table th {
-                    background: border-box;
-                    background-color: rgb(0, 136, 180);
-                    color: #fff;
-                    font-weight: bold;
-                    padding: 10px;
-                    text-align: left;
-                }
-
-                .category-container .table td {
-                    padding: 10px;
-                    border-bottom: 1px solid #ddd;
-                }
-
-                .category-container .table tr:nth-child(even) {
-                    background-color: #f9f9f9;
-                }
-
-            .category-container a {
-                display: inline-block;
-                margin-bottom: 10px;
-                padding: 5px 10px;
-                background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-                color: #fff;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.3s ease; /* Add smooth transition */
-            }
-
-                .category-container a:hover {
-                    background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-                }
-    </style>
 </head>
 <body>
     <h2>@ViewBag.Title</h2>
+    <hr />
+    <a href="@ViewBag.ReturnUrl">Back</a>
     <div class="category-container">
         <table class="table" cellspacing="5">
             <tr>
