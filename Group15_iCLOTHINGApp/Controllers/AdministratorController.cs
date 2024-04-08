@@ -22,7 +22,7 @@ namespace Group15_iCLOTHINGApp.Controllers
         {
             ViewBag.Products = db.Product.ToList(); ;
             ViewBag.Categories = db.Category.ToList(); ;
-            ViewBag.Departments = db.Department.ToList(); ;
+            ViewBag.Brands = db.Brand.ToList(); ;
             return View();
         }
 
@@ -43,6 +43,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 // Update the order status to "shipped"
                 order.orderStatus1 = "Shipped";
+                order.adminUpdated = Session["AdminID"].ToString();
                 db.SaveChanges();
             }
             return RedirectToAction("ManageOrders");
