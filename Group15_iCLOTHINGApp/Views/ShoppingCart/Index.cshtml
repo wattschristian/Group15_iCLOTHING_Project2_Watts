@@ -46,7 +46,7 @@
         background-color: #f9f9f9;
     }
 
-    a {
+    .remove {
         display: inline-block;
         margin-bottom: 10px;
         padding: 5px 10px;
@@ -54,11 +54,13 @@
         color: #fff;
         text-decoration: none;
         border-radius: 5px;
+        border-width: 0;
         transition: background-color 0.3s ease; /* Add smooth transition */
     }
 
-    a:hover {
+    .remove:hover {
         background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+        color: black;
     }
 </style>
 <head>
@@ -68,7 +70,6 @@
 </head>
 <h2>@ViewBag.Title</h2>
 <hr />
-@Html.ActionLink("Back", "Index", "UserQuery")
 <table class="table" cellspacing="5">
     <tr>
         <th>Name</th>
@@ -93,7 +94,7 @@
                 <input type="number" min="0" max="@item.cartProductQty" />
             </td>
             <td>
-                <input type="button" value="Remove" onclick="removeItemsFromCart(this)" />
+                <input class="remove" type="button" value="Remove" onclick="removeItemsFromCart(this)" />
             </td>
         </tr>
     }
@@ -103,7 +104,7 @@
     <div style="display: inline-block;">
         <p>Total: $@ViewBag.CartTotal</p>
     </div>
-    <input type="submit" value="Check Out" style="float:right" />
+    <input class="remove" type="submit" value="Check Out" style="float:right" />
 }
 <script>
     $(function () {
