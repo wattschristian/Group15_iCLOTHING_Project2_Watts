@@ -106,6 +106,9 @@
     <input type="submit" value="Check Out" style="float:right" />
 }
 <script>
+    $(function () {
+        window.location.reload();
+    })
     function removeItemsFromCart(button) {
         var id = $(button).parent().parent().data("id");
         var price = $(button).parent().parent().data("price");

@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
@@ -13,7 +14,6 @@ namespace Group15_iCLOTHINGApp.Controllers
     {
         private Group15_iCLOTHINGDBEntities db = new Group15_iCLOTHINGDBEntities();
 
-        // GET: ShoppingCart
         public ActionResult Index(bool add_removeFlag = false, string productPrice = "", string productID = "", string productName = "", int quantity = 0)
         {
             bool success = false;
@@ -59,10 +59,6 @@ namespace Group15_iCLOTHINGApp.Controllers
                 {
                     return RedirectToAction("Index", "UserQuery");
                 }
-                else if (success && !add_removeFlag)
-                {
-                    return RedirectToAction("Index", "ShoppingCart");
-                }
             }
             return View(db.ShoppingCart.ToList());
         }
@@ -87,7 +83,12 @@ namespace Group15_iCLOTHINGApp.Controllers
         public bool RemoveItemFromCart(Product product)
         {
             bool success = false;
-            ShoppingCart userCart = db.ShoppingCart.Where(p => p.productID == product.productID).First();
+            ShoppingCart userCart = null;
+            List<ShoppingCart> cartItems = db.ShoppingCart.Where(p => p.productID == product.productID).ToList();
+            if (cartItems.Count > 0)
+            {
+                userCart = cartItems.ElementAt(0);
+            }
             if (userCart != null)
             {
                 if (userCart.productID == product.productID)
