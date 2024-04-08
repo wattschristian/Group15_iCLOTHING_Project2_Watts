@@ -17,18 +17,18 @@
 <h2>Order #@Model.Item1 Summary</h2>
 @Html.ActionLink("Back to Home", "Index", "Home")
 <hr />
-@Html.Label("Item Count")
+<b>@Html.Label("Item Count")</b>
 <hr />
 <p>@ViewBag.TotalItems</p>
 <br />
-@Html.Label("Total")
+<b>@Html.Label("Total")</b>
 <hr />
 <p>$@ViewBag.CartTotal</p>
 <br />
-@Html.Label("Customer")
+<b>@Html.Label("Customer")</b>
 <hr />
 <p>@Model.Item3</p>
 <br />
-@Html.Label("Estimated Delivery")
+<b>@Html.Label("Estimated Delivery")</b>
 <hr />
 <p>@Model.Item4</p>
