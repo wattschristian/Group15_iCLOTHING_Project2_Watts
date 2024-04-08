@@ -7,13 +7,14 @@
         ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
     }
 }
+<link rel="stylesheet" href="~/Stylesheets/AdminManageStyleSheet.css">
 <h2>Manage Orders</h2>
+<hr />
 <a href="@ViewBag.ReturnURL">Back</a>
-<hr /><br />
-
+<br />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="category-container">
+<div class="admin-container">
     <table class="table" cellspacing="5">
 
         <tr>
@@ -21,7 +22,8 @@
             <th>Order Status</th>
             <th>Order Date</th>
             <th>Status ID</th>
-            <th>Admin Update</th>
+            <th>Admin Updated</th>
+            <th></th>
         </tr>
         @foreach (var order in Model)
         {
@@ -37,9 +39,11 @@
                 <td>@order.statusID</td>
                 <td>
                     @order.adminUpdated
+                </td>
+                <td>
                     @if (order.orderStatus1 == "Paid")
                     {
-                        @Html.ActionLink("Aprrove", "ApproveOrder", "Administrator", new { statusID = order.statusID }, null);
+                        @Html.ActionLink("Approve", "ApproveOrder", "Administrator", new { statusID = order.statusID }, new { @class = "nav-link" })
                     }
                 </td>
             </tr>
