@@ -1,8 +1,48 @@
-﻿
+﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.OrderStatus>
 @{
     ViewBag.Title = "ManageOrders";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Request.UrlReferrer != null)
+    {
+        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
+    }
 }
-
 <h2>Manage Orders</h2>
-<hr />
+<a href="@ViewBag.ReturnURL">Back</a>
+<hr /><br />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="category-container">
+    <table class="table" cellspacing="5">
+
+        <tr>
+            <th>Customer ID</th>
+            <th>Order Status</th>
+            <th>Order Date</th>
+            <th>Status ID</th>
+            <th>Admin Update</th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.customerID</td>
+                <td>@order.orderStatus1</td>
+
+                @if (order.statusDate <= DateTime.Now.AddDays(-7) && order.orderStatus1 == "Shipped")
+                {
+                    order.orderStatus1 = "Delivered";
+                }
+                <td>@order.statusDate</td>
+                <td>@order.statusID</td>
+                <td>
+                    @order.adminUpdated
+                    @if (order.orderStatus1 == "Paid")
+                    {
+                        @Html.ActionLink("Aprrove", "ApproveOrder", "Administrator", new { statusID = order.statusID }, null);
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

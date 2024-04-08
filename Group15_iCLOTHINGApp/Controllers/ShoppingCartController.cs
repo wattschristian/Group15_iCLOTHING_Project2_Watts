@@ -35,7 +35,7 @@ namespace Group15_iCLOTHINGApp.Controllers
                     {
                         order = new OrderStatus();
                         order.statusID = rnd.Next(1000, 9999).ToString();
-                        order.orderStatus1 = "inProgress";
+                        order.orderStatus1 = "Confirmed";
                         order.statusDate = DateTime.Now;
                         order.customerID = Session["UserID"].ToString();
                         db.OrderStatus.Add(order);

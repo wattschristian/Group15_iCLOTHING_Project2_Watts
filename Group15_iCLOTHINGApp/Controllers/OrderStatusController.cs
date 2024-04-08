@@ -45,7 +45,7 @@ namespace Group15_iCLOTHINGApp.Controllers
             {
                 db.ShoppingCart.Remove(item);
             }
-            customerOrder.orderStatus1 = "Awaiting Approval";
+            customerOrder.orderStatus1 = "Paid";
             db.SaveChanges();
             return View(orderSummary);
         }
