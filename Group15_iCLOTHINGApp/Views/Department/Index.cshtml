@@ -12,64 +12,18 @@ else
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-/* Inline CSS for department page */
-.department-container {
-padding: 20px;
-font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-}
-
-.department-container .table {
-width: 100%;
-border-collapse: collapse;
-border-spacing: 0;
-margin-top: 20px;
-}
-
-.department-container .table th {
-background: border-box;
-background-color: rgb(0, 136, 180);
-color: #fff;
-font-weight: bold;
-padding: 10px;
-text-align: left;
-}
-
-.department-container .table td {
-padding: 10px;
-border-bottom: 1px solid #ddd;
-}
-
-.department-container .table tr:nth-child(even) {
-background-color: #f9f9f9;
-}
-
-.department-container a {
-display: inline-block;
-margin-bottom: 10px;
-padding: 5px 10px;
-background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-color: #fff;
-text-decoration: none;
-border-radius: 5px;
-transition: background-color 0.3s ease; /* Add smooth transition */
-}
-
-.department-container a:hover {
-background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-}
-</style>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - iCLOTHING Web Store</title>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
 </head>
 <body>
     <h2>@ViewBag.Title</h2>
     <hr />
-    <div class="department-container">
+    <div class="custom-container">
         <table class="table" cellspacing="5">
             <tr>
                 <th>

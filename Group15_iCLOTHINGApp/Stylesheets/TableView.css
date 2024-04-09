@@ -1,0 +1,68 @@
+﻿/* Add the provided CSS here */
+.custom-container {
+    padding: 20px;
+    font-family: Arial, sans-serif; /* Match the font-family of the navbar */
+}
+
+.custom-container .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 20px;
+}
+
+.custom-container .table th {
+    background: border-box;
+    background-color: rgb(0, 136, 180);
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+.custom-container .table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-container .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="button"] {
+    background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+}
+
+.custom-container .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-container a {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.custom-container a:hover {
+    background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
+}

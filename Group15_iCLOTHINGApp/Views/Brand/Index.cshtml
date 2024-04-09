@@ -12,81 +12,39 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }
-<style>
-/* Style for the brand container */
-.brand-container {
-padding: 20px;
-font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-}
-
-/* Style for the table */
-.brand-container .table {
-width: 100%;
-border-collapse: collapse;
-border-spacing: 0;
-margin-top: 20px;
-}
-
-/* Style for table headers */
-.brand-container .table th {
-background: border-box;
-background-color: rgb(0, 136, 180);
-color: #fff;
-font-weight: bold;
-padding: 10px;
-text-align: left;
-}
-
-/* Style for table cells */
-.brand-container .table td {
-padding: 10px;
-border-bottom: 1px solid #ddd;
-}
-
-/* Style for table rows */
-.brand-container .table tr:nth-child(even) {
-background-color: #f9f9f9;
-}
-
-/* Style for "Back" link */
-.brand-container a {
-display: inline-block;
-margin-bottom: 10px;
-padding: 5px 10px;
-background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-color: #fff;
-text-decoration: none;
-border-radius: 5px;
-transition: background-color 0.3s ease; /* Add smooth transition */
-}
-
-.brand-container a:hover {
-background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-}
-
-</style>
-<h2>@ViewBag.Title</h2>
-<hr />
-<div class="brand-container">
-    <table class="table" cellspacing="5">
-        <tr>
-            <th>Brand Name</th>
-            <th>Brand Description</th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
+</head>
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    <div class="custom-container">
+        <table class="table" cellspacing="5">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.brandName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.brandDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("View", "Filter", "Product", new { brandID = item.brandID }, new { @class = "nav-link" })
-                </td>
+                <th>Brand Name</th>
+                <th>Brand Description</th>
+                <th></th>
             </tr>
-        }
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.brandName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.brandDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "Filter", "Product", new { brandID = item.brandID }, new { @class = "nav-link" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
