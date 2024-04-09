@@ -1,112 +1,123 @@
-﻿using Group15_iCLOTHINGApp.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using Group15_iCLOTHINGApp.Models;
 
 namespace Group15_iCLOTHINGApp.Controllers
 {
-    public class ItemDeliveryController : Controller
+    public class CustomerInfoController : Controller
     {
         private Group15_iCLOTHINGDBEntities db = new Group15_iCLOTHINGDBEntities();
 
-        // GET: ItemDelivery
-        public ActionResult Index()
+        // GET: CustomerInfo
+        public ActionResult Index(CustomerInfo customer=null)
         {
-            return View(db.ItemDelivery.ToList());
+            if (Session["UserID"] == null)
+                return RedirectToAction("UserLogin", "UserLogin");
+            CustomerInfo c = db.CustomerInfo.Find(Session["UserID"].ToString());
+            return View(c);
         }
 
-        // GET: ItemDelivery/Details/5
+        // GET: CustomerInfo/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDelivery itemDelivery = db.ItemDelivery.Find(id);
-            if (itemDelivery == null)
+            CustomerInfo customerInfo = db.CustomerInfo.Find(id);
+            if (customerInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(itemDelivery);
+            return View(customerInfo);
         }
 
-        // GET: ItemDelivery/Create
+        // GET: CustomerInfo/Create
         public ActionResult Create()
         {
+            ViewBag.customerID = new SelectList(db.UserPassword, "userID", "userAccountName");
             return View();
         }
 
-        // POST: ItemDelivery/Create
+        // POST: CustomerInfo/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "stickerID,stickerDate")] ItemDelivery itemDelivery)
+        public ActionResult Create([Bind(Include = "customerID,customerName,customerShippingAddress,customerBillingAddress,customerDOB,customerGender,userEncryptedPassword")] CustomerInfo customerInfo)
         {
             if (ModelState.IsValid)
             {
-                db.ItemDelivery.Add(itemDelivery);
+                db.CustomerInfo.Add(customerInfo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(itemDelivery);
+            ViewBag.customerID = new SelectList(db.UserPassword, "userID", "userAccountName", customerInfo.customerID);
+            return View(customerInfo);
         }
 
-        // GET: ItemDelivery/Edit/5
+        // GET: CustomerInfo/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDelivery itemDelivery = db.ItemDelivery.Find(id);
-            if (itemDelivery == null)
+            CustomerInfo customerInfo = db.CustomerInfo.Find(id);
+            if (customerInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(itemDelivery);
+            ViewBag.customerID = new SelectList(db.UserPassword, "userID", "userAccountName", customerInfo.customerID);
+            return View(customerInfo);
         }
 
-        // POST: ItemDelivery/Edit/5
+        // POST: CustomerInfo/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "stickerID,stickerDate")] ItemDelivery itemDelivery)
+        public ActionResult Edit([Bind(Include = "customerID,customerName,customerShippingAddress,customerBillingAddress,customerDOB,customerGender,userEncryptedPassword")] CustomerInfo customerInfo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(itemDelivery).State = EntityState.Modified;
+                db.Entry(customerInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(itemDelivery);
+            ViewBag.customerID = new SelectList(db.UserPassword, "userID", "userAccountName", customerInfo.customerID);
+            return View(customerInfo);
         }
 
-        // GET: ItemDelivery/Delete/5
+        // GET: CustomerInfo/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDelivery itemDelivery = db.ItemDelivery.Find(id);
-            if (itemDelivery == null)
+            CustomerInfo customerInfo = db.CustomerInfo.Find(id);
+            if (customerInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(itemDelivery);
+            return View(customerInfo);
         }
 
-        // POST: ItemDelivery/Delete/5
+        // POST: CustomerInfo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ItemDelivery itemDelivery = db.ItemDelivery.Find(id);
-            db.ItemDelivery.Remove(itemDelivery);
+            CustomerInfo customerInfo = db.CustomerInfo.Find(id);
+            db.CustomerInfo.Remove(customerInfo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

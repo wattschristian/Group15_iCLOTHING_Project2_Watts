@@ -12,104 +12,59 @@
 }
 
 <!DOCTYPE html>
-<style>
-    /* Inline CSS for cart page */
-    body {
-        font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-        background-color: #f9f9f9;
-        padding: 20px;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-    th, td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background: border-box; /* Match the navbar gradient */
-        background-color: rgb(0, 136, 180);
-        color: black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .remove {
-        display: inline-block;
-        margin-bottom: 10px;
-        padding: 5px 10px;
-        background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        border-width: 0;
-        transition: background-color 0.3s ease; /* Add smooth transition */
-    }
-
-    .remove:hover {
-        background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-        color: black;
-    }
-</style>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - iCLOTHING Web Store</title>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
 </head>
-<h2>@ViewBag.Title</h2>
-<hr />
-<table class="table" cellspacing="5">
-    <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th></th>
-    </tr>
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    <div class="custom-container">
+        <table class="table" cellspacing="5">
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr data-name="@item.cartProductName" data-price="@item.cartProductPrice" data-id="@item.productID">
-            <td>
-                @Html.DisplayFor(modelItem => item.cartProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cartProductQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cartProductPrice)
-            </td>
-            <td>
-                <input type="number" min="0" max="@item.cartProductQty" />
-            </td>
-            <td>
-                <input class="remove" type="button" value="Remove" onclick="removeItemsFromCart(this)" />
-            </td>
-        </tr>
-    }
-</table>
-@using (Html.BeginForm("Checkout", "OrderStatus"))
-{
-    <div style="display: inline-block;">
-        <p>Total: $@ViewBag.CartTotal</p>
+            @foreach (var item in Model)
+            {
+                <tr data-name="@item.cartProductName" data-price="@item.cartProductPrice" data-id="@item.productID">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cartProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cartProductQty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cartProductPrice)
+                    </td>
+                    <td>
+                        <input type="number" id="picker" min="0" max="@item.cartProductQty" />
+                    </td>
+                    <td>
+                        <input class="remove" type="button" value="Remove" onclick="removeItemsFromCart(this)" />
+                        @*@Html.ActionLink("Remove", "Index", "ShoppingCart", new { add_removeFlag=false, productPrice=item.cartProductPrice, productID=item.productID,
+                            productName=item.cartProductName, quantity=}, new {@class="remove"})*@
+                    </td>
+                </tr>
+            }
+        </table>
+        @using (Html.BeginForm("Checkout", "OrderStatus"))
+        {
+            <div style="display: inline-block;">
+                <p>Total: $@ViewBag.CartTotal</p>
+            </div>
+            <input class="remove" type="submit" value="Check Out" style="float:right" />
+        }
     </div>
-    <input class="remove" type="submit" value="Check Out" style="float:right" />
-}
+</body>
+</html>
 <script>
-    $(function () {
-        window.location.reload();
-    })
     function removeItemsFromCart(button) {
         var id = $(button).parent().parent().data("id");
         var price = $(button).parent().parent().data("price");

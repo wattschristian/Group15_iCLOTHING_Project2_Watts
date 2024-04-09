@@ -33,110 +33,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <style>
-        /* Add the provided CSS here */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin-top: 20px;
-        }
-
-            .table th {
-                background: border-box;
-                background-color: rgb(0, 136, 180);
-                color: #fff;
-                font-weight: bold;
-                padding: 10px;
-                text-align: left;
-            }
-
-            .table td {
-                padding: 10px;
-                border-bottom: 1px solid #ddd;
-            }
-
-            .table tr:nth-child(even) {
-                background-color: #f9f9f9;
-            }
-
-        .addtocart{
-            display: inline-block;
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            border-width: 0;
-            transition: background-color 0.3s ease; /* Add smooth transition */
-        }
-
-            .addtocart:hover {
-                background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-                color: black;
-            }
-    </style>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
 </head>
 <body>
     <h2>@ViewBag.Title</h2>
     <hr />
-    <table class="table" cellpadding="5">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>In Stock</th>
-            <th></th>
-            <th></th>
-        </tr>
-        @foreach (var item in catalog)
-        {
-            <tr data-name="@item.productName" data-price="@item.productPrice" data-id="@item.productID">
-                <td>
-                    @Html.DisplayFor(modelItem => item.productName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.productDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.productPrice)
-                </td>
-                <td>
-                    @if (item.productQty > 0)
-                    {
-                        @Html.DisplayFor(modelItem => item.productQty)
-                    }
-                    else
-                    {
-                        <p>Out of Stock</p>
-                    }
-                </td>
-                <td>
-                    <input type="number" min="0" max="@item.productQty" />
-                </td>
-                <td>
-                    <input class="addtocart" type="button" value="Add to Cart" onclick="addItemsToCart(this)" />
-                </td>
+    <div class="custom-container">
+        <table class="table" cellpadding="5">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>In Stock</th>
+                <th></th>
+                <th></th>
             </tr>
-        }
-    </table>
-    <script>
-        function addItemsToCart(button) {
-            var id = $(button).parent().parent().data("id");
-            var price = $(button).parent().parent().data("price");
-            var name = $(button).parent().parent().data("name");
-            var qtyPickerIndex = $(button).parent().siblings().length - 1;
-            var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
-            var url = '@Url.Action("Index", "ShoppingCart")';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: { add_removeFlag: true, productPrice: price, productID: id, productName: name, quantity: qty },
-                dataType: "json",
-                cache: false
-            });
-        }
-    </script>
+            @foreach (var item in catalog)
+            {
+                <tr data-name="@item.productName" data-price="@item.productPrice" data-id="@item.productID">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productPrice)
+                    </td>
+                    <td>
+                        @if (item.productQty > 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.productQty)
+                        }
+                        else
+                        {
+                            <p>Out of Stock</p>
+                        }
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="@item.productQty" />
+                    </td>
+                    <td>
+                        <input class="addtocart" type="button" value="Add to Cart" onclick="addItemsToCart(this)" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 </body>
 </html>
+<script>
+    function addItemsToCart(button) {
+        var id = $(button).parent().parent().data("id");
+        var price = $(button).parent().parent().data("price");
+        var name = $(button).parent().parent().data("name");
+        var qtyPickerIndex = $(button).parent().siblings().length - 1;
+        var qty = $(button).parent().siblings()[qtyPickerIndex].children[0].value;
+        var url = '@Url.Action("Index", "ShoppingCart")';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: { add_removeFlag: true, productPrice: price, productID: id, productName: name, quantity: qty },
+            dataType: "json",
+            cache: false
+        });
+    }
+</script>

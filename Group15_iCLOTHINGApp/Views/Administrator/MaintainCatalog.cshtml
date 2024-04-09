@@ -1,19 +1,14 @@
 ﻿@{
-    ViewBag.Title = "MaintainCatalog";
+    ViewBag.Title = "Maintain Catalog";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    if (Request.UrlReferrer != null)
-    {
-        ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
-    }
 }
-<link rel="stylesheet" href="~/Stylesheets/AdminManageStyleSheet.css">
-<h2>Maintain Catalog</h2>
-<a href="@ViewBag.ReturnURL">Back</a>
+<link rel="stylesheet" href="~/Stylesheets/TableView.css">
+<h2>@ViewBag.Title</h2>
 <hr /><br />
-<div class="admin-container">
+<div class="custom-container">
     <h4>Products</h4>
     <p>
-        @Html.ActionLink("Create New", "Create", "Product")
+        @Html.ActionLink("Create New", "Create", "Product", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -49,7 +44,7 @@
     <br /><br />
     <h4>Categories</h4>
     <p>
-        @Html.ActionLink("Create New", "Create", "Category")
+        @Html.ActionLink("Create New", "Create", "Category", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -76,7 +71,7 @@
     <br /><br />
     <h4>Brands</h4>
     <p>
-        @Html.ActionLink("Create New", "Create", "Brand")
+        @Html.ActionLink("Create New", "Create", "Brand", null, new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
