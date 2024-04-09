@@ -1,0 +1,37 @@
+﻿@model Group15_iCLOTHINGApp.Models.UserPassword
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserPassword</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userAccountName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.userAccountName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.passwordExpiryTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.passwordExpiryTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.userAccountExpiryDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.userAccountExpiryDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userID }) |
+    @Html.ActionLink("Back to List", "ManageUsers", "Administrator")
+</p>

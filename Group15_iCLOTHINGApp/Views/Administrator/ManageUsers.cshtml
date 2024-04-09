@@ -1,8 +1,39 @@
-﻿@model IEnumerable<Group15_iCLOTHINGApp.Models.UserPassword>
-@{
-    ViewBag.Title = "ManageUsers";
+﻿@{
+    ViewBag.Title = "Manage Users";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <link rel="stylesheet" href="~/Stylesheets/TableView.css">
-<h2>ManageUsers</h2>
+<h2>@ViewBag.Title</h2>
+<hr /><br />
+<div class="custom-container">
+    <table class="table" cellspacing="5">
+
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Account Expiration</th>
+            <th></th>
+        </tr>
+        @foreach (var user in ViewBag.Users)
+        {
+            <tr>
+                <td>
+                    <p>@user.userID</p>
+                </td>
+                <td>
+                    <p>@user.userAccountName</p>
+                </td>
+                <td>
+                    <p>@user.userAccountExpiryDate</p>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "UserPassword", new { id = user.userID }, null) |
+                    @Html.ActionLink("Details", "Details", "UserPassword", new { id = user.userID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "UserPassword", new { id = user.userID }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
 

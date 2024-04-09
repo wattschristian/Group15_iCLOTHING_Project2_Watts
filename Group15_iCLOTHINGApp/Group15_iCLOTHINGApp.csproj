@@ -321,6 +321,9 @@
     <Content Include="Views\CustomerInfo\Details.cshtml" />
     <Content Include="Views\CustomerInfo\Edit.cshtml" />
     <Content Include="Views\Administrator\ManageUsers.cshtml" />
+    <Content Include="Views\UserPassword\Edit.cshtml" />
+    <Content Include="Views\UserPassword\Delete.cshtml" />
+    <Content Include="Views\UserPassword\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
