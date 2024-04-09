@@ -1,0 +1,35 @@
+﻿.custom-form {
+    padding: 20px;
+    font-family: Arial, sans-serif; /* Match the font-family of the navbar */
+}
+
+    .custom-form .custom-form-group {
+        margin-bottom: 15px;
+    }
+
+    .custom-form .custom-control-label {
+        font-weight: bold;
+    }
+
+    .custom-form input[type="submit"] {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 5px;
+        background-color: rgb(0, 136, 180);
+        color: #fff;
+    }
+
+        .custom-form input[type="submit"]:hover {
+            background-color: #005b7f;
+        }
+
+    .custom-form a:hover {
+        background-color: #5a6268;
+    }
+
+.text-danger {
+    color: red;
+}

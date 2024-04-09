@@ -1,0 +1,57 @@
+﻿@model Group15_iCLOTHINGApp.Models.CustomerInfo
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
+</head>
+<body>
+    <div class="custom-container">
+        <h2>Account Info</h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("Name")
+                </th>
+                <th>
+                    @Html.Label("Shipping Address")
+                </th>
+                <th>
+                    @Html.Label("Billing Address")
+                </th>
+                <th>
+                    @Html.Label("Date of Birth")
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.customerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.customerShippingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.customerBillingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.customerDOB)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.customerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = Model.customerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.customerID })
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

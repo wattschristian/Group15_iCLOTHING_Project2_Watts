@@ -133,10 +133,9 @@
     <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerInfoController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
-    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemDeliveryController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -260,10 +259,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Stylesheets\AdminManageStyleSheet.css" />
-    <Content Include="Stylesheets\DepartmentStyleSheet.css" />
-    <Content Include="Stylesheets\NavBarStyleSheet.css" />
-    <Content Include="Stylesheets\StyleSheet1.css" />
+    <Content Include="Stylesheets\LoginRegisterStyleSheet.css" />
+    <Content Include="Stylesheets\TableView.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,16 +288,6 @@
     <Content Include="Views\Department\Details.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
-    <Content Include="Views\Email\Create.cshtml" />
-    <Content Include="Views\Email\Delete.cshtml" />
-    <Content Include="Views\Email\Details.cshtml" />
-    <Content Include="Views\Email\Edit.cshtml" />
-    <Content Include="Views\Email\Index.cshtml" />
-    <Content Include="Views\ItemDelivery\Create.cshtml" />
-    <Content Include="Views\ItemDelivery\Delete.cshtml" />
-    <Content Include="Views\ItemDelivery\Details.cshtml" />
-    <Content Include="Views\ItemDelivery\Edit.cshtml" />
-    <Content Include="Views\ItemDelivery\Index.cshtml" />
     <Content Include="Views\OrderStatus\Create.cshtml" />
     <Content Include="Views\OrderStatus\Delete.cshtml" />
     <Content Include="Views\OrderStatus\Details.cshtml" />
@@ -328,6 +315,15 @@
     <Content Include="Views\UserPassword\Create.cshtml" />
     <Content Include="Views\OrderStatus\Checkout.cshtml" />
     <Content Include="Views\OrderStatus\Summary.cshtml" />
+    <Content Include="Views\CustomerInfo\Index.cshtml" />
+    <Content Include="Views\CustomerInfo\Create.cshtml" />
+    <Content Include="Views\CustomerInfo\Delete.cshtml" />
+    <Content Include="Views\CustomerInfo\Details.cshtml" />
+    <Content Include="Views\CustomerInfo\Edit.cshtml" />
+    <Content Include="Views\Administrator\ManageUsers.cshtml" />
+    <Content Include="Views\UserPassword\Edit.cshtml" />
+    <Content Include="Views\UserPassword\Delete.cshtml" />
+    <Content Include="Views\UserPassword\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

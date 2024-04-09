@@ -9,86 +9,49 @@
     }
 }
 
-<style>
-    /* Inline CSS for feedback page */
-    .feedback-container {
-        padding: 20px;
-        font-family: Arial, sans-serif; /* Match the font-family of the navbar */
-    }
-        .feedback-container .table
-
-    {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-top: 20px;
-    }
-
-    .feedback-container .table th {
-        background: border-box;
-        background-color: rgb(0, 136, 180);
-        color: #fff;
-        font-weight: bold;
-        padding: 10px;
-        text-align: left;
-    }
-
-    .feedback-container .table td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .feedback-container .table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .feedback-container a {
-        margin-right: 10px;
-        padding: 5px 10px;
-        background: linear-gradient(to right, #667eea, #764ba2); /* Match the navbar gradient */
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease; /* Add smooth transition */
-    }
-
-        .feedback-container a:hover {
-            background: linear-gradient(to right, #5a3ec8, #6a82fb); /* Darken the gradient on hover */
-        }
-</style>
-<h2>@ViewBag.Title</h2>
-<hr />
-<br /><br />
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-</p>
-<div class="feedback-container">
-    <table class="table">
-        <tr>
-            <th>
-                Date
-            </th>
-            <th>
-                Feedback
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Stylesheets/TableView.css">
+</head>
+<body>
+    <h2>@ViewBag.Title</h2>
+    <hr /><br />
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+    <div class="custom-container">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.commentDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.commentDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.commentNo }, new { @class = "btn btn-info" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.commentNo }, new { @class = "btn btn-danger" })
-                </td>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Feedback
+                </th>
+                <th></th>
             </tr>
-        }
-    </table>
-</div>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.commentDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.commentDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.commentNo }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.commentNo }, new { @class = "btn btn-info" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.commentNo }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

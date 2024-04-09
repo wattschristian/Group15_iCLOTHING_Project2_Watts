@@ -49,6 +49,13 @@ namespace Group15_iCLOTHINGApp.Controllers
             return RedirectToAction("ManageOrders");
         }
 
+        public ActionResult ManageUsers(bool update=false)
+        {
+            List<UserPassword> users = db.UserPassword.ToList();
+            ViewBag.Users = users;
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
