@@ -58,7 +58,20 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View(orderSummary);
         }
 
-        // GET: OrderStatus/Details/5
+        public ActionResult Details(int? id)
+        {
+            return View(id);
+        }
+        public ActionResult Edit(int? id)
+        {
+            return View(id);
+        }
+
+
+
+        // GET: OrderStatus/Edit/5
+        /*
+                  // GET: OrderStatus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -72,8 +85,8 @@ namespace Group15_iCLOTHINGApp.Controllers
             }
             return View(orderStatus);
         }
-
-        // GET: OrderStatus/Create
+        
+                  // GET: OrderStatus/Create
         public ActionResult Create()
         {
             return View();
@@ -96,63 +109,62 @@ namespace Group15_iCLOTHINGApp.Controllers
             return View(orderStatus);
         }
 
-        // GET: OrderStatus/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderStatus orderStatus = db.OrderStatus.Find(id);
-            if (orderStatus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orderStatus);
-        }
+          public ActionResult Edit(int? id)
+          {
+              if (id == null)
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+              }
+              OrderStatus orderStatus = db.OrderStatus.Find(id);
+              if (orderStatus == null)
+              {
+                  return HttpNotFound();
+              }
+              return View(orderStatus);
+          }
 
-        // POST: OrderStatus/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "statusID,orderStatus1,statusDate")] OrderStatus orderStatus)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(orderStatus).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(orderStatus);
-        }
+          // POST: OrderStatus/Edit/5
+          // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+          // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult Edit([Bind(Include = "statusID,orderStatus1,statusDate")] OrderStatus orderStatus)
+          {
+              if (ModelState.IsValid)
+              {
+                  db.Entry(orderStatus).State = EntityState.Modified;
+                  db.SaveChanges();
+                  return RedirectToAction("Index");
+              }
+              return View(orderStatus);
+          }
 
-        // GET: OrderStatus/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderStatus orderStatus = db.OrderStatus.Find(id);
-            if (orderStatus == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orderStatus);
-        }
+          // GET: OrderStatus/Delete/5
+          public ActionResult Delete(int? id)
+          {
+              if (id == null)
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+              }
+              OrderStatus orderStatus = db.OrderStatus.Find(id);
+              if (orderStatus == null)
+              {
+                  return HttpNotFound();
+              }
+              return View(orderStatus);
+          }
 
-        // POST: OrderStatus/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OrderStatus orderStatus = db.OrderStatus.Find(id);
-            db.OrderStatus.Remove(orderStatus);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+          // POST: OrderStatus/Delete/5
+          [HttpPost, ActionName("Delete")]
+          [ValidateAntiForgeryToken]
+          public ActionResult DeleteConfirmed(int id)
+          {
+              OrderStatus orderStatus = db.OrderStatus.Find(id);
+              db.OrderStatus.Remove(orderStatus);
+              db.SaveChanges();
+              return RedirectToAction("Index");
+          }
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
