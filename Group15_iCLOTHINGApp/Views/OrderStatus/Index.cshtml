@@ -3,37 +3,40 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<link rel="stylesheet" href="~/Stylesheets/AdminManageStyleSheet.css">
+<h2>Order Status</h2>
+<br />
+<hr />
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.orderStatus1)
+            <p>Order Status</p>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statusDate)
+            <p>Date Ordered</p>
         </th>
-        <th></th>
+        <th>
+            <p>Alter Order</p>
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.orderStatus1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.statusDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.statusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.statusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.statusID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderStatus1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "OrderStatus", new { id = item.statusID }) |
+                @Html.ActionLink("Details", "Details", "OrderStatus", new { id = item.statusID }) 
+            </td>
+        </tr>
+    }
 
 </table>
